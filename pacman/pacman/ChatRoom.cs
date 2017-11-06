@@ -1,26 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net.Sockets;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace pacman
 {
     class ChatRoom : MarshalByRefObject
     {
-        private List<Message> conversation;
-        private List<ChatRoom> clientsChatRoom;
-        private Form1 conversationForm;
+        /*
+         * This attribute sets the number of attempts
+         * that the message it's resended
+         */
+        private static int MAX_ATTEMPTS = 3;
 
-        public ChatRoom(PacmanServer server, Form1 form)
+        /*
+         * This attribute saves all the 
+         * conversation of a cient 
+         */
+        private List<Message> conversation;
+
+
+        /*
+         * This attribute saves a reference
+         * of the others clients
+         */
+        private List<ChatRoom> clientsChatRooms;
+        private Form1 conversationForm;
+        private String nickname;
+        private IPacmanServer server;
+
+        public ChatRoom(IPacmanServer server, Form1 form, String nickname)
         {
-            conversation = new List<Message>();
-            this.clientsChatRoom = server.getClientsChatRoom();
+            this.nickname = nickname;
+            this.server = server;
+            conversation = new List<Message>();  
         }
 
-        public void sendMessage(String message)
+        /*
+         * This method it's called by the server
+         * so that updates the clientsChatRooms
+         */
+        public void setClientChatRooms(List<ChatRoom> chatRooms)
         {
+            this.clientsChatRooms = chatRooms;
+        }
+
+        public void sendMessage(String stringMessage)
+        {
+            Message message = new Message(stringMessage, nickname, conversation.Count + 1);
             Thread thread = new Thread(() => broadCastMessage(message));
             thread.Start();
         }
@@ -29,20 +56,37 @@ namespace pacman
         {
             conversation.Add(message);
             conversation.Sort();
-            updateClientConversation(conversation);
+            updateClientConversation();
         }
 
-        private void broadCastMessage(String stringMessage)
+        private void broadCastMessage(Message message)
         {
-            Message message = new Message(stringMessage, conversation.Count + 1);
+            int firstAttempt = 0;
+            foreach (ChatRoom chat in clientsChatRooms)
+                sendMessage(chat, message, firstAttempt);
+        }
 
-            foreach (ChatRoom chat in clientsChatRoom)
+        private void sendMessage(ChatRoom chat, Message message, int attempt)
+        {
+            try
+            {
                 chat.receiveMessage(message);
+            }
+            catch (SocketException exc)
+            {
+                if (attempt < MAX_ATTEMPTS)
+                    sendMessage(chat, message, attempt++);
+            }
         }
-        
-        private void updateClientConversation(List<Message> conversation)
+
+        private void updateClientConversation()
         {
-            conversationForm.Invoke(conversationForm.refreshConversation, conversation)
+            String messages = "";
+
+            foreach (Message m in conversation)
+                messages += m.outputMessage();
+
+            conversationForm.Invoke(conversationForm.refreshConversation, messages);
         }
 
     }

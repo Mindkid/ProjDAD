@@ -13,6 +13,9 @@ using System.Windows.Forms;
 namespace pacman {
     public partial class Form1 : Form {
 
+        public delegate void RefreshConversation(String conversation);
+        public RefreshConversation refreshConversation;
+
         // direction player is moving in. Only one will be true
         bool goup;
         bool godown;
@@ -39,6 +42,7 @@ namespace pacman {
         public Form1() {
             InitializeComponent();
             label2.Visible = false;
+            refreshConversation = new RefreshConversation(refreshMessages);
         }
 
         private void keyisdown(object sender, KeyEventArgs e) {
@@ -162,6 +166,11 @@ namespace pacman {
             if (e.KeyCode == Keys.Enter) {
                 tbChat.Text += "\r\n" + tbMsg.Text; tbMsg.Clear(); tbMsg.Enabled = false; this.Focus();
             }
+        }
+
+        private void refreshMessages(string conversation)
+        {
+            tbChat.Text = conversation;
         }
     }
 }

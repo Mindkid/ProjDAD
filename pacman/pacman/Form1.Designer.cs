@@ -1,5 +1,12 @@
-﻿namespace pacman {
+﻿using System;
+
+namespace pacman {
     partial class Form1 {
+
+       
+
+        
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -1189,6 +1196,8 @@
         private System.Windows.Forms.PictureBox pictureBox64;
         private System.Windows.Forms.TextBox tbMsg;
         private System.Windows.Forms.TextBox tbChat;
+
+      
     }
 }
 

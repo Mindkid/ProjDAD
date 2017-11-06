@@ -10,12 +10,14 @@ namespace pacman
     class Message : IComparable
     {
         private String message;
+        private String nickname;
         private int message_ID;
         private DateTime dateTime;
 
-        public Message(String message, int message_ID) 
+        public Message(String message, String nickname,  int message_ID) 
         {
             this.message = message;
+            this.nickname = nickname;
             this.message_ID = message_ID;
             this.dateTime = new DateTime();
         }
@@ -35,21 +37,25 @@ namespace pacman
             return dateTime;
         }
 
-        public int CompareTo(object obj1, object obj2)
+        public int CompareTo(object obj)
         {
-            int result = 0;
-            Message message1 = (Message)obj1;
-            Message message2 = (Message)obj2;
+            int result;
+            Message message = (Message)obj;
 
-            if (message1.getMessageID() > message2.getMessageID())
+            if (this.getMessageID() > message.getMessageID())
                 result = 1;
             else
                 result = -1;
 
-            if (message1.getMessageID() == message2.getMessageID())
-                result = message1.GetDateTime().CompareTo(message2.GetDateTime());
-           
+            if (this.getMessageID() == message.getMessageID())
+                result = this.GetDateTime().CompareTo(message.GetDateTime());
+
             return result;
+        }
+
+        public String outputMessage()
+        {
+            return nickname + ": " + message + "\n\r";
         }
     }
 }
