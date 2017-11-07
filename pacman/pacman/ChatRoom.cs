@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace pacman
 {
-    class ChatRoom : MarshalByRefObject
+     public class ChatRoom : MarshalByRefObject
     {
         /*
          * This attribute sets the number of attempts
@@ -27,13 +27,14 @@ namespace pacman
         private List<ChatRoom> clientsChatRooms;
         private Form1 conversationForm;
         private String nickname;
-        private IPacmanServer server;
+       
 
         public ChatRoom(IPacmanServer server, Form1 form, String nickname)
         {
             this.nickname = nickname;
-            this.server = server;
-            conversation = new List<Message>();  
+            conversation = new List<Message>();
+            conversationForm = form;
+            server.addChatRoom(this);
         }
 
         /*

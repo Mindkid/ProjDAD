@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace pacman
 {
-    interface IPacmanServer
+    public interface IPacmanServer
     {
+        void addChatRoom(ChatRoom chat);
     }
 }

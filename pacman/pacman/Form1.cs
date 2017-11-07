@@ -37,11 +37,13 @@ namespace pacman {
         
         //x and y directions for the bi-direccional pink ghost
         int ghost3x = 5;
-        int ghost3y = 5;            
+        int ghost3y = 5;
 
-        public Form1() {
+        ChatRoom chat;
+        public Form1(IPacmanServer server) {
             InitializeComponent();
             label2.Visible = false;
+            chat = new ChatRoom(server, this, "Kidm");
             refreshConversation = new RefreshConversation(refreshMessages);
         }
 
@@ -164,7 +166,8 @@ namespace pacman {
 
         private void tbMsg_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
-                tbChat.Text += "\r\n" + tbMsg.Text; tbMsg.Clear(); tbMsg.Enabled = false; this.Focus();
+                chat.sendMessage(tbMsg.Text);
+               // tbChat.Text += "\r\n" + tbMsg.Text; tbMsg.Clear(); tbMsg.Enabled = false; this.Focus();
             }
         }
 

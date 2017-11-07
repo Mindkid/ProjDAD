@@ -7,3 +7,15 @@ c:\users\mimi.mimi-pc\documents\visual studio 2015\Projects\pacman\pacman\obj\De
 c:\users\mimi.mimi-pc\documents\visual studio 2015\Projects\pacman\pacman\obj\Debug\pacman.csproj.GenerateResource.Cache
 c:\users\mimi.mimi-pc\documents\visual studio 2015\Projects\pacman\pacman\obj\Debug\pacman.exe
 c:\users\mimi.mimi-pc\documents\visual studio 2015\Projects\pacman\pacman\obj\Debug\pacman.pdb
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\bin\Debug\pacman.exe.config
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\bin\Debug\pacman.exe
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\bin\Debug\pacman.pdb
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.dll
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.csprojResolveAssemblyReference.cache
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.Form1.resources
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.Properties.Resources.resources
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.GenerateResource.Cache
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.exe
+C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.pdb

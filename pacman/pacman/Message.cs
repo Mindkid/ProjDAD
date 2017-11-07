@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace pacman
 {
     [Serializable]
-    class Message : IComparable
+    public class Message : IComparable
     {
         private String message;
         private String nickname;
