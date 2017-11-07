@@ -19,3 +19,15 @@ C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacm
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.exe
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\pacman\obj\Debug\pacman.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csprojResolveAssemblyReference.cache
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.Form1.resources
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.Properties.Resources.resources
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.GenerateResource.Cache
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.CoreCompileInputs.cache
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.exe
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.exe.config
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.exe
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.dll
+C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.pdb

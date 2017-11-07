@@ -1,0 +1,8 @@
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\bin\Release\netstandard1.6\ConnectorLibrary.deps.json
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\bin\Release\netstandard1.6\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\bin\Release\netstandard1.6\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\obj\Release\netstandard1.6\ConnectorLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\obj\Release\netstandard1.6\ConnectorLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\obj\Release\netstandard1.6\ConnectorLibrary.AssemblyInfo.cs
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\obj\Release\netstandard1.6\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ServerChat\ConnectorLibrary\obj\Release\netstandard1.6\ConnectorLibrary.pdb

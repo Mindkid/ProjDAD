@@ -12,3 +12,17 @@ C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacm
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\PacmanServer\obj\Debug\PacmanServer.pdb
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.exe.CodeAnalysisLog.xml
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.exe.lastcodeanalysissucceeded
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Debug\PacmanServer.csprojResolveAssemblyReference.cache
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Debug\PacmanServer.csproj.CoreCompileInputs.cache
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Debug\PacmanServer.exe
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Debug\PacmanServer.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.exe.config
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.exe
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.exe.CodeAnalysisLog.xml
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.exe.lastcodeanalysissucceeded
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\ConnectorLibrary.dll
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\pacman.exe
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\ConnectorLibrary.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\pacman.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\pacman.exe.config

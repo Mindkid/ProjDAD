@@ -116,8 +116,8 @@
     <None Include="Resources\yellow_guy.gif" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\source\repos\ServerChat\ConnectorLibrary\ConnectorLibrary.csproj">
-      <Project>{f9db2b9b-d805-4c7e-a385-8342b867dfa2}</Project>
+    <ProjectReference Include="..\ConnectorLibrary\ConnectorLibrary.csproj">
+      <Project>{6b084570-c2c5-4506-b272-1004531372be}</Project>
       <Name>ConnectorLibrary</Name>
     </ProjectReference>
   </ItemGroup>

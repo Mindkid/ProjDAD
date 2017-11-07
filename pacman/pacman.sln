@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pacman", "pacman\pacman.csproj", "{ECE5A838-E181-493A-B9A2-6ADD01DE37F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacmanServer", "PacmanServer\PacmanServer.csproj", "{66216C8A-E4D3-49A7-B521-7371EE8FFF06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectorLibrary", "..\..\..\..\..\..\source\repos\ServerChat\ConnectorLibrary\ConnectorLibrary.csproj", "{F9DB2B9B-D805-4C7E-A385-8342B867DFA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectorLibrary", "ConnectorLibrary\ConnectorLibrary.csproj", "{6B084570-C2C5-4506-B272-1004531372BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{66216C8A-E4D3-49A7-B521-7371EE8FFF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66216C8A-E4D3-49A7-B521-7371EE8FFF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66216C8A-E4D3-49A7-B521-7371EE8FFF06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9DB2B9B-D805-4C7E-A385-8342B867DFA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9DB2B9B-D805-4C7E-A385-8342B867DFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9DB2B9B-D805-4C7E-A385-8342B867DFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9DB2B9B-D805-4C7E-A385-8342B867DFA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B084570-C2C5-4506-B272-1004531372BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B084570-C2C5-4506-B272-1004531372BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B084570-C2C5-4506-B272-1004531372BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B084570-C2C5-4506-B272-1004531372BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
