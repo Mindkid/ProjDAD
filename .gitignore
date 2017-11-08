@@ -1,0 +1,6 @@
+pacman/pacman/bin/
+pacman/pacman/obj/
+pacman/PacmanServer/bin/
+pacman/PacmanServer/obj/
+pacman/ConnectorLibrary/bin/
+pacman/ConnectorLibrary/obj/
