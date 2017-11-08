@@ -75,6 +75,7 @@ namespace pacman
             }
             catch (SocketException exc)
             {
+                Console.WriteLine(exc.ToString());
                 if (attempt < MAX_ATTEMPTS)
                     sendMessage(chat, message, attempt++);
             }

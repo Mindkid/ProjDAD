@@ -42,6 +42,7 @@ namespace PacmanServer
                 catch(SocketException exc)
                 {
                     //Do nothing ou fazer retry a Definir
+                    Console.WriteLine(exc.ToString());
                 }
             }
             chatRooms.Clear();
