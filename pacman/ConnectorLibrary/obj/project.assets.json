@@ -1867,7 +1867,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rui\\.nuget\\packages\\": {}
+    "C:\\Users\\Paulo Martins\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -1875,14 +1875,14 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rui\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Paulo Martins\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
       "projectName": "ConnectorLibrary",
-      "projectPath": "C:\\Users\\Rui\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
-      "packagesPath": "C:\\Users\\Rui\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rui\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\obj\\",
+      "projectPath": "C:\\Users\\Paulo Martins\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
+      "packagesPath": "C:\\Users\\Paulo Martins\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Paulo Martins\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Rui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Paulo Martins\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

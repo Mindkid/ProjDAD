@@ -31,12 +31,17 @@ namespace pacman
 
         public ChatRoom(IPacmanServer server, Form1 form, String nickname)
         {
-            this.nickname = nickname;
             conversation = new List<Message>();
+            clientsChatRooms = new List<ChatRoom>();
             conversationForm = form;
+            this.nickname = nickname;
             server.addChatRoom(this);
         }
 
+        public String getNickName()
+        {
+            return nickname;
+        }
         /*
          * This method it's called by the server
          * so that updates the clientsChatRooms

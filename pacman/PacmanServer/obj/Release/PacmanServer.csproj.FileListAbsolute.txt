@@ -10,3 +10,15 @@ C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacm
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.exe
 C:\Users\Paulo Martins\Desktop\Faculdade\1º Semestre 2017-2018\DAD\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\PacmanServer.exe.config
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\PacmanServer.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\PacmanServer.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\pacman.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\pacman.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\pacman.exe.config
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csprojResolveAssemblyReference.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.pdb

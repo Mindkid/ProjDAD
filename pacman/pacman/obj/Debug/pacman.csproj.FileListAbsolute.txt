@@ -31,3 +31,15 @@ C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.exe
 C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.pdb
 C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.dll
 C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.exe.config
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\pacman.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csprojResolveAssemblyReference.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.Form1.resources
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.Properties.Resources.resources
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.GenerateResource.Cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.pdb

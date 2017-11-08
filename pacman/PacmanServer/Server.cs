@@ -20,15 +20,21 @@ namespace PacmanServer
             chatRooms = new List<ChatRoom>();
         }
 
-        [MethodImplAttribute(MethodImplOptions.Synchronized)]
+        public List<ChatRoom> getClients()
+        {
+            return chatRooms;
+        }
+
         public void addChatRoom(ChatRoom chat)
         {
+            Monitor.Enter(this);
             chatRooms.Add(chat);
             if(chatRooms.Count >= NUMBER_OF_PLAYERS)
             {
                 Thread thread = new Thread(() => startChating());
                 thread.Start();
             }
+            Monitor.Exit(this);
         }
 
         public void startChating()

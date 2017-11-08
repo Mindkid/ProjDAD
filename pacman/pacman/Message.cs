@@ -55,7 +55,7 @@ namespace pacman
 
         public String outputMessage()
         {
-            return nickname + ": " + message + "\n\r";
+            return nickname + ": " + message + "\r\n";
         }
     }
 }
