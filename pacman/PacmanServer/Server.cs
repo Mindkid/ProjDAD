@@ -27,14 +27,15 @@ namespace PacmanServer
 
         public void addChatRoom(ChatRoom chat)
         {
-            //Monitor.Enter(this);
+            Monitor.Enter(this);
             chatRooms.Add(chat);
             if(chatRooms.Count >= NUMBER_OF_PLAYERS)
             {
-                startChating();
+                Thread thread = new Thread(() => startChating());
+                thread.Start();
                 
             }
-            //Monitor.Exit(this);
+            Monitor.Exit(this);
         }
 
         private void startChating()
