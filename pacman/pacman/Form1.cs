@@ -124,7 +124,7 @@ namespace pacman {
             //for loop to check walls, ghosts and points
             foreach (Control x in this.Controls) {
                 // checking if the player hits the wall or the ghost, then game is over
-                if (x is PictureBox && x.Tag == "wall" || x.Tag == "ghost") {
+                if (x is PictureBox && (string)x.Tag == "wall" || (string)x.Tag == "ghost") {
                     if (((PictureBox)x).Bounds.IntersectsWith(pacman.Bounds)) {
                         pacman.Left = 0;
                         pacman.Top = 25;
@@ -133,7 +133,7 @@ namespace pacman {
                         timer1.Stop();
                     }
                 }
-                if (x is PictureBox && x.Tag == "coin") {
+                if (x is PictureBox && (string)x.Tag == "coin") {
                     if (((PictureBox)x).Bounds.IntersectsWith(pacman.Bounds)) {
                         this.Controls.Remove(x);
                         score++;

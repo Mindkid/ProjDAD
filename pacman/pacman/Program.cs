@@ -16,10 +16,11 @@ namespace pacman {
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(String[] args) {
+        static void Main() {
+            int port = 8000;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            IPacmanServer server = getServer(int.Parse(args[0]));
+            IPacmanServer server = getServer(port);
             Application.Run(new Form1(server));
         }
 

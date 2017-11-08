@@ -12,7 +12,7 @@ namespace PacmanServer
 {
     class Server : MarshalByRefObject, IPacmanServer
     {
-        private static int NUMBER_OF_PLAYERS = 2;
+        private static int NUMBER_OF_PLAYERS = 1;
         private List<ChatRoom> chatRooms;
 
         public Server()
@@ -41,7 +41,7 @@ namespace PacmanServer
                 }
                 catch(SocketException exc)
                 {
-                    //Do nothing ou fazer retry a Definir 
+                    //Do nothing ou fazer retry a Definir
                 }
             }
             chatRooms.Clear();
