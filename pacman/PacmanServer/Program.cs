@@ -14,9 +14,14 @@ namespace PacmanServer
     {
         static void Main()
         {
-
-            createChannel(ConnectionLibrary.SERVER_PORT);
             
+            BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
+            provider.TypeFilterLevel = TypeFilterLevel.Full;
+            IDictionary props = new Hashtable();
+            props["port"] = ConnectionLibrary.SERVER_PORT;
+            TcpChannel channel = new TcpChannel(props, null, provider);
+            ChannelServices.RegisterChannel(channel, false);
+
             Server server = new Server();
             RemotingServices.Marshal(server, ConnectionLibrary.SERVER_NAME, typeof(Server));
             System.Console.WriteLine("Enter instruction:");
@@ -37,17 +42,6 @@ namespace PacmanServer
                 System.Console.WriteLine("Enter instruction:");
                 instruction = System.Console.ReadLine().ToLower();
             }
-        }
-
-        static void createChannel(int port)
-        {
-            BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
-            provider.TypeFilterLevel = TypeFilterLevel.Full;
-            IDictionary props = new Hashtable();
-            props["port"] = port;
-            TcpChannel channel = new TcpChannel(props, null, provider);
-            ChannelServices.RegisterChannel(channel, false);
-        
         }
     }
 }

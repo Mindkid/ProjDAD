@@ -27,17 +27,17 @@ namespace PacmanServer
 
         public void addChatRoom(ChatRoom chat)
         {
-            Monitor.Enter(this);
+            //Monitor.Enter(this);
             chatRooms.Add(chat);
             if(chatRooms.Count >= NUMBER_OF_PLAYERS)
             {
-                Thread thread = new Thread(() => startChating());
-                thread.Start();
+                startChating();
+                
             }
-            Monitor.Exit(this);
+            //Monitor.Exit(this);
         }
 
-        public void startChating()
+        private void startChating()
         {
             foreach (ChatRoom c in chatRooms)
             {
@@ -47,7 +47,8 @@ namespace PacmanServer
                 }
                 catch(SocketException exc)
                 {
-                    //Do nothing ou fazer retry a Definir 
+                    //Do nothing ou fazer retry a Definir
+                    Console.WriteLine(exc.ToString());
                 }
             }
             chatRooms.Clear();

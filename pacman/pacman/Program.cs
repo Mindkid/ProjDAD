@@ -19,7 +19,14 @@ namespace pacman {
         static void Main(String[] args) {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            createChannel(int.Parse(args[0]));
+
+            BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
+            provider.TypeFilterLevel = TypeFilterLevel.Full;
+            IDictionary props = new Hashtable();
+            props["port"] = int.Parse(args[0]);
+
+            TcpChannel channel = new TcpChannel(props, null, provider);
+            ChannelServices.RegisterChannel(channel, false);
             IPacmanServer server = getServer();
             Application.Run(new Form1(server));
         }
@@ -27,17 +34,6 @@ namespace pacman {
         static IPacmanServer getServer()
         {  
             return (IPacmanServer)Activator.GetObject(typeof(IPacmanServer), ConnectionLibrary.buildServerURL());
-        }
-
-        static void createChannel(int port)
-        {
-            BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
-            provider.TypeFilterLevel = TypeFilterLevel.Full;
-            IDictionary props = new Hashtable();
-            props["port"] = port;
-
-            TcpChannel channel = new TcpChannel(props, null, provider);
-            ChannelServices.RegisterChannel(channel, false);
         }
     }
 }
