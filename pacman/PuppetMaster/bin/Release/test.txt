@@ -1,0 +1,3 @@
+startserver jgjg hkhhkh :1230/ hkhj kkhjhkj
+startclient jggjgj hkhkh :12000/ gjg jkhhk jhkhkh
+startclient jggjg hkhkh :12001/ gjg jkhhk jhkhkh

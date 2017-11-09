@@ -19,6 +19,8 @@ namespace PCS
          */
         String takeSnapshot(int randomToken);
 
+        String getBoardState(int roundID);
+
         /*
          * This process injects a delay in the channel
          * between the target process and the destination 

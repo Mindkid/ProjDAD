@@ -1,16 +1,24 @@
-﻿using System;
+﻿using PuppetMaster;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Sockets;
+using System.Threading;
+
 
 namespace PCS
 {
-    public class PCS : MarshalByRefObject
+    // CLASS NEED MONITORS? Ask Professor
+    public class PCS : MarshalByRefObject , IPCS
     {
+        private static long DELAY = 10000;
+        
         private Dictionary<String, int> processIDs;
         private Dictionary<String, IProcessToPCS> processes;
 
         private List<int> randomTokens;
+        private List<String> serversURL;
+
         /*
          * This are the paths to the given EXE files
          */ 
@@ -18,11 +26,12 @@ namespace PCS
         private static String serverPath = "..\\..\\..\\..\\pacman\\PacmanServer\\bin\\Release\\PacmanServer.exe";
 
 
-        public PCS()
+        public PCS() 
         {
             processIDs = new Dictionary<string, int>();
             processes = new Dictionary<string, IProcessToPCS>();
             randomTokens = new List<int>();
+            serversURL = new List<String>();
         }
 
         /*
@@ -30,8 +39,11 @@ namespace PCS
          */ 
         public void creatClientNode(String processID, String clientURL, String filename)
         {
-          
-            String arguments = " " + filename;
+            String arguments = serversURL.Count + " ";
+            foreach (String url in serversURL)
+                arguments += url + " ";
+            arguments += filename;
+
             launchProcess(processID, clientURL, clientPath, arguments);
 
             Console.WriteLine("Client Node was launched..");
@@ -43,7 +55,10 @@ namespace PCS
         public void creatServerNode(String processID, String serverURL, String roundTime, String maxPlayers)
         {
             String arguments = roundTime + " " + maxPlayers;
-            launchProcess(processID, serverURL, serverPath, arguments); 
+
+            launchProcess(processID, serverURL, serverPath, arguments);
+
+            serversURL.Add(serverURL);
             Console.WriteLine("Server Node was launched..");
         }
 
@@ -59,16 +74,16 @@ namespace PCS
 
             processIDs.Add(processID, Process.Start(startInfo).Id);
 
-            IProcessToPCS process = (IProcessToPCS)Activator.GetObject(typeof(IProcessToPCS), url);
+            //IProcessToPCS process = (IProcessToPCS)Activator.GetObject(typeof(IProcessToPCS), url);
 
-            processes.Add(processID, process);
+            //processes.Add(processID, process);
         }
 
         /*
          * This method kills a process
          */
         public void killProcess(String processID)
-        {
+        { 
             try
             {
                 Process.GetProcessById(processIDs[processID]).Kill();
@@ -77,7 +92,9 @@ namespace PCS
             catch(Exception e)
             {
                 Console.WriteLine(processID + ": could not be killed...");
+                processIDs.Remove(processID);
             }
+            
         }
 
         public void freezeProcess(String processID)
@@ -88,8 +105,7 @@ namespace PCS
             }
             catch(SocketException)
             {
-                Console.WriteLine("Couldn't freeze process: " + processID);
-                //DO NOTHING OR REDEFINE 
+                Console.WriteLine("Couldn't freeze process: " + processID); 
             }
         }
 
@@ -102,25 +118,24 @@ namespace PCS
             catch(SocketException)
             {
                 Console.WriteLine("Couldn't unfreeze process: " + processID);
-                //DO NOTHING OR REDEFINE 
             }
         }
 
         public String globalStatus()
         {
             String status = "";
-            foreach (String s in processes.Keys)
-                status += localState(s);
-
+            int token = generateRandomUniqueToken();
+            foreach (IProcessToPCS iptpcs in processes.Values)
+                status += iptpcs.takeSnapshot(token);
             return status;
         }
 
-        public String localState(String processID)
+        public String localState(String processID, String roundID)
         {
             String state = "Process: " + processID + "\r\n";
             try
             {
-                state += processes[processID].takeSnapshot(generateRandomUniqueToken());
+                state += processes[processID].getBoardState(int.Parse(roundID));
                 state += "\r\n";
             }
             catch(SocketException)
@@ -129,6 +144,11 @@ namespace PCS
             }
 
             return state;
+        }
+
+        public void injectDelay(String srcPID, String destPID)
+        {
+            processes[srcPID].injectDelay(destPID, DELAY);
         }
 
         private int generateRandomUniqueToken()
