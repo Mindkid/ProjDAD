@@ -19,13 +19,15 @@ namespace PCS
             BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
             provider.TypeFilterLevel = TypeFilterLevel.Full;
             IDictionary props = new Hashtable();
-            props["port"] = ConnectionLibrary.SERVER_PORT;
+            props["port"] = ConnectionLibrary.PCS_PORT;
             TcpChannel channel = new TcpChannel(props, null, provider);
             ChannelServices.RegisterChannel(channel, false);
 
             PCS pcs = new PCS();
-            RemotingServices.Marshal(pcs, ConnectionLibrary.SERVER_NAME, typeof(PCS));
+            RemotingServices.Marshal(pcs, ConnectionLibrary.PCS_NAME, typeof(PCS));
 
+            Console.ReadLine();
+           
         }
     }
 }

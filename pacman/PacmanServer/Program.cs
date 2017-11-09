@@ -12,7 +12,7 @@ namespace PacmanServer
 {
     class Program
     {
-        static void Main()
+        static void Main(String[] args)
         {
             
             BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
