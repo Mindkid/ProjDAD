@@ -1,4 +1,5 @@
-﻿using PuppetMaster;
+﻿using ConnectorLibrary;
+using PuppetMaster;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -89,7 +90,7 @@ namespace PCS
                 Process.GetProcessById(processIDs[processID]).Kill();
                 Console.WriteLine(processID + ": was killed...");
             }
-            catch(Exception e)
+            catch(Exception )
             {
                 Console.WriteLine(processID + ": could not be killed...");
                 processIDs.Remove(processID);

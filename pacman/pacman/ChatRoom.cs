@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConnectorLibrary;
+using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
@@ -35,7 +36,6 @@ namespace pacman
             clientsChatRooms = new List<ChatRoom>();
             conversationForm = form;
             this.nickname = nickname;
-            server.addChatRoom(this);
         }
 
         public String getNickName()

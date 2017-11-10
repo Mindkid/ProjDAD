@@ -1,9 +1,9 @@
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\bin\Release\PuppetMaster.exe.config
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\bin\Release\PuppetMaster.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\bin\Release\PuppetMaster.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\bin\Release\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\bin\Release\ConnectorLibrary.pdb
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\obj\Release\PuppetMaster.csprojResolveAssemblyReference.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\obj\Release\PuppetMaster.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\obj\Release\PuppetMaster.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\obj\Release\PuppetMaster.pdb
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\bin\Release\ConnectorLibrary.dll
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PuppetMaster\bin\Release\ConnectorLibrary.pdb

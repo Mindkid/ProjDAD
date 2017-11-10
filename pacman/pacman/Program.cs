@@ -28,7 +28,7 @@ namespace pacman {
             TcpChannel channel = new TcpChannel(props, null, provider);
             ChannelServices.RegisterChannel(channel, false);
             IPacmanServer server = getServer();
-            Application.Run(new Form1(server));
+            Application.Run(new Form1(server, KeyConfiguration.NUMBER_OF_PLAYERS));
         }
 
         static IPacmanServer getServer()

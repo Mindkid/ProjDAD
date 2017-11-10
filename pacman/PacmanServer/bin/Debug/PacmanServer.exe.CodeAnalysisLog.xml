@@ -1,6 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio\2017\enterprise\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
 <FxCopReport Version="15.0">
+ <Targets>
+  <Target Name="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Debug\PacmanServer.exe">
+   <Modules>
+    <Module Name="pacmanserver.exe">
+     <Messages>
+      <Message TypeName="MarkWindowsFormsEntryPointsWithStaThread" Category="Microsoft.Usage" CheckId="CA2232" Status="Active" Created="2017-11-10 18:40:02Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Program.cs" Line="18">Mark the entry point method 'Program.Main(string[])' in assembly 'PacmanServer.exe' with an STAThreadAttribute.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="PacmanServer">
+       <Types>
+        <Type Name="Form1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#timer1_Tick(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-11-10 18:40:02Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Form1.cs" Line="90">Object 'pacman' can be disposed more than once in method 'Form1.timer1_Tick(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 90</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Server" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-11-10 18:40:02Z" FixCategory="NonBreaking">
+           <Issue Name="NonBreaking" Certainty="95" Level="CriticalError">Implement IDisposable on 'Server' because it creates members of the following IDisposable types: 'Timer'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#addClient(pacman.IClientApp)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-11-10 18:40:02Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="32">'Server.addClient(IClientApp)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="46">'Server.addClient(IClientApp)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Do not dispose objects multiple times</Name>
+   <Description>A correctly implemented Dispose method can be called multiple times without throwing an exception. However, this is not guaranteed and to avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.</Description>
+   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 90</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002">
+   <Name>Do not lock on objects with weak identity</Name>
+   <Description>Don't take locks on objects that may bleed across AppDomains or that don't have a strong identity.</Description>
+   <Resolution Name="Default">{0} locks on a reference of type {1}. Replace this with a lock against an object with strong-identity.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182290.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalError</MessageLevel>
+   <File Name="reliabilityrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkWindowsFormsEntryPointsWithStaThread" Category="Microsoft.Usage" CheckId="CA2232">
+   <Name>Mark Windows Forms entry points with STAThread</Name>
+   <Description>Assemblies that reference System.Windows.Forms should have the STAThreadAttribute. Failure to apply this attribute will most likely result in an application that does not work. Windows Forms relies on a number of components that use the STA model.</Description>
+   <Resolution Name="Default">Mark the entry point method {0} in assembly {1} with an STAThreadAttribute.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182351.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+   <Name>Types that own disposable fields should be disposable</Name>
+   <Description>Types that declare disposable members should also implement IDisposable. If the type does not own any unmanaged resources, do not implement a finalizer on it.</Description>
+   <Resolution Name="NonBreaking">Implement IDisposable on {0} because it creates members of the following IDisposable types: {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182172.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+ </Rules>
  <Localized>
   <String Key="Category">Category</String>
   <String Key="Certainty">Certainty</String>

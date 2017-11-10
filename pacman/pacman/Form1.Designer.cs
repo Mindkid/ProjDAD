@@ -30,12 +30,12 @@ namespace pacman {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pacman = new System.Windows.Forms.PictureBox();
             this.pinkGhost = new System.Windows.Forms.PictureBox();
             this.yellowGhost = new System.Windows.Forms.PictureBox();
             this.redGhost = new System.Windows.Forms.PictureBox();
@@ -105,7 +105,7 @@ namespace pacman {
             this.pictureBox64 = new System.Windows.Forms.PictureBox();
             this.tbMsg = new System.Windows.Forms.TextBox();
             this.tbChat = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pacman)).BeginInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.pinkGhost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yellowGhost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redGhost)).BeginInit();
@@ -200,18 +200,7 @@ namespace pacman {
             this.timer1.Enabled = true;
             this.timer1.Interval = 20;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // pacman
-            // 
-            this.pacman.BackColor = System.Drawing.Color.Transparent;
-            this.pacman.Image = global::pacman.Properties.Resources.Left;
-            this.pacman.Location = new System.Drawing.Point(8, 40);
-            this.pacman.Margin = new System.Windows.Forms.Padding(0);
-            this.pacman.Name = "pacman";
-            this.pacman.Size = new System.Drawing.Size(25, 25);
-            this.pacman.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pacman.TabIndex = 4;
-            this.pacman.TabStop = false;
+           
             // 
             // pinkGhost
             // 
@@ -966,6 +955,7 @@ namespace pacman {
             this.tbChat.Name = "tbChat";
             this.tbChat.Size = new System.Drawing.Size(100, 255);
             this.tbChat.TabIndex = 144;
+           
             // 
             // Form1
             // 
@@ -1036,7 +1026,7 @@ namespace pacman {
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pacman);
+            
             this.Controls.Add(this.pinkGhost);
             this.Controls.Add(this.yellowGhost);
             this.Controls.Add(this.redGhost);
@@ -1044,11 +1034,12 @@ namespace pacman {
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
+         
             this.Name = "Form1";
             this.Text = "DADman";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyisdown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
-            ((System.ComponentModel.ISupportInitialize)(this.pacman)).EndInit();
+            
+         
             ((System.ComponentModel.ISupportInitialize)(this.pinkGhost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yellowGhost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.redGhost)).EndInit();
@@ -1116,6 +1107,7 @@ namespace pacman {
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox62)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox63)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox64)).EndInit();
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1130,7 +1122,7 @@ namespace pacman {
         private System.Windows.Forms.PictureBox redGhost;
         private System.Windows.Forms.PictureBox yellowGhost;
         private System.Windows.Forms.PictureBox pinkGhost;
-        private System.Windows.Forms.PictureBox pacman;
+ 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
@@ -1197,7 +1189,6 @@ namespace pacman {
         private System.Windows.Forms.TextBox tbMsg;
         private System.Windows.Forms.TextBox tbChat;
 
-      
     }
 }
 

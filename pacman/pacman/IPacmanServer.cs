@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConnectorLibrary;
 
 namespace pacman
 {
     public interface IPacmanServer
     {
-        void addChatRoom(ChatRoom chat);
+        void addClient(IClientApp clientApp);
+        //void sendKey(KeyConfiguration.KEYS key);
     }
 }

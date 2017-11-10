@@ -1,44 +1,100 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using pacman;
-using System.Runtime.CompilerServices;
+using System.Timers;
 using System.Threading;
 using System.Net.Sockets;
+using ConnectorLibrary;
 
 namespace PacmanServer
 {
     class Server : MarshalByRefObject, IPacmanServer
     {
-        private static int NUMBER_OF_PLAYERS = 2;
+        private Dictionary<IClientApp, String> clients;
         private List<ChatRoom> chatRooms;
+        private Dictionary<int, Form1> gameHistory;
 
-        public Server()
+        private Form1 form;
+        private System.Timers.Timer requestClientInput;
+
+        int roundID;
+        public Server(Form1 form, int roundTime)
         {
+            roundID = 0;
+            this.form = form;
+            clients = new Dictionary<IClientApp, string>();
             chatRooms = new List<ChatRoom>();
+            gameHistory = new Dictionary<int, Form1>();
+
+            requestClientInput = new System.Timers.Timer(roundTime);
+            requestClientInput.Elapsed += RequestClientInput_Elapsed;
+            requestClientInput.Start();
         }
 
-        public List<ChatRoom> getClients()
+        private void RequestClientInput_Elapsed(object sender, ElapsedEventArgs e)
         {
-            return chatRooms;
+            Dictionary<String, KeyConfiguration.KEYS> pacmanMoves = new Dictionary<String, KeyConfiguration.KEYS>();
+
+            foreach (IClientApp client in clients.Keys)
+                pacmanMoves.Add(clients[client], client.sendKey());
+
+            //Console.WriteLine("This are the moves:  " + pacmanMoves.ToString());
+
+            sendMovesToClients(pacmanMoves, roundID);
+
+            gameHistory.Add(roundID, form);
+            roundID++;
         }
 
-        public void addChatRoom(ChatRoom chat)
+        public void addClient(IClientApp clientApp)
         {
             Monitor.Enter(this);
-            chatRooms.Add(chat);
-            if(chatRooms.Count >= NUMBER_OF_PLAYERS)
+            
+            addChatRoom(clientApp.GetChatRoom());
+
+            String playerID = "pacman" + clients.Count;
+
+            clients.Add(clientApp, playerID);
+
+            if (clients.Count >= KeyConfiguration.NUMBER_OF_PLAYERS)
             {
-                Thread thread = new Thread(() => startChating());
+                Thread thread = new Thread(() => startGame());
                 thread.Start();
-                
+
             }
             Monitor.Exit(this);
         }
 
-        private void startChating()
+        private void actualizeBoard(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves)
+        {
+            foreach (String s in pacmanMoves.Keys)
+                form.Invoke(form.movePacmanDel, new object[] { s, pacmanMoves[s] });
+        }
+
+        private void sendMovesToClients(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round)
+        {
+            foreach (IClientApp client in clients.Keys)
+                client.receiveKey(pacmanMoves, roundID);
+        }
+
+        public List<ChatRoom> getChatRooms()
+        {
+            return chatRooms;
+        }
+
+        private void addChatRoom(ChatRoom chat)
+        {
+            chatRooms.Add(chat);
+        }
+
+        private void startGame()
+        {
+            foreach (IClientApp c in clients.Keys)
+                c.setPacmanName(clients[c]); 
+            startChat();
+        }
+
+        private void startChat()
         {
             foreach (ChatRoom c in chatRooms)
             {
@@ -46,10 +102,9 @@ namespace PacmanServer
                 {
                     c.setClientChatRooms(chatRooms);
                 }
-                catch(SocketException exc)
+                catch (SocketException)
                 {
-                    //Do nothing ou fazer retry a Definir
-                    Console.WriteLine(exc.ToString());
+                    //DO NOTHING OR REDIFINE
                 }
             }
             chatRooms.Clear();

@@ -12,6 +12,8 @@ namespace PacmanServer
 {
     class Program
     {
+        private static int ROUND_TIME = 1000;
+
         static void Main(String[] args)
         {
             
@@ -22,7 +24,9 @@ namespace PacmanServer
             TcpChannel channel = new TcpChannel(props, null, provider);
             ChannelServices.RegisterChannel(channel, false);
 
-            Server server = new Server();
+            Form1 form = new Form1(KeyConfiguration.NUMBER_OF_PLAYERS, ROUND_TIME);
+
+            Server server = new Server(form, ROUND_TIME);
             RemotingServices.Marshal(server, ConnectionLibrary.SERVER_NAME, typeof(Server));
             System.Console.WriteLine("Enter instruction:");
             String instruction = System.Console.ReadLine().ToLower();
@@ -32,7 +36,7 @@ namespace PacmanServer
                 switch (instruction)
                 {
                     case "list":
-                        List<ChatRoom> usernames = server.getClients();
+                        List<ChatRoom> usernames = server.getChatRooms();
                         System.Console.WriteLine("This are the numeber of clients " + usernames.Count);
                         foreach (ChatRoom c in usernames)
                             System.Console.WriteLine("This are the name of client: " + c.getNickName());
