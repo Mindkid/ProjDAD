@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace pacman
 {
-    public class ClientApp: MarshalByRefObject, IClientApp
+    public class ClientApp: MarshalByRefObject, IClientApp, IProcessToPCS
     {
         private ChatRoom chat;
         private IPacmanServer server;
         private Form1 form;
+        private int numberOfServers;
 
         private String pacmanName;
         /*
@@ -75,6 +76,40 @@ namespace pacman
         public String getPacmanName()
         {
             return pacmanName;
+        }
+
+        public void freezeProcess()
+        {
+            Monitor.Enter(this);
+        }
+
+        public void unFreezeProcess()
+        {
+            Monitor.Exit(this);
+        }
+
+        public String takeSnapshot(int randomToken)
+        {
+            return pacmanName + " ok!";
+        }
+
+        public string getBoardState(int roundID)
+        {
+            String boardStatus = "";
+            try
+            {
+                boardStatus = (String) gameHistory[roundID].Invoke(form.boardStatus);
+            }
+            catch(Exception)
+            {
+                boardStatus = "----- BOARD ERROR ----";
+            }
+            return boardStatus;
+        }
+
+        public void injectDelay(string destinationProcess, long delayTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }

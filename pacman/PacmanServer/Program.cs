@@ -20,14 +20,24 @@ namespace PacmanServer
             BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
             provider.TypeFilterLevel = TypeFilterLevel.Full;
             IDictionary props = new Hashtable();
-            props["port"] = ConnectionLibrary.SERVER_PORT;
+
+            String afterTwoDots= args[0].Split(':')[2];
+            String port = afterTwoDots.Split('/')[0];
+            
+            props["port"] = int.Parse(port);
+
+            String serverName = afterTwoDots.Split('/')[1];
+
             TcpChannel channel = new TcpChannel(props, null, provider);
             ChannelServices.RegisterChannel(channel, false);
 
-            Form1 form = new Form1(KeyConfiguration.NUMBER_OF_PLAYERS, ROUND_TIME);
+            int roundTime = int.Parse(args[1]);
+            int numberOfPlayers = int.Parse(args[2]);
 
-            Server server = new Server(form, ROUND_TIME);
-            RemotingServices.Marshal(server, ConnectionLibrary.SERVER_NAME, typeof(Server));
+            Form1 form = new Form1(numberOfPlayers, roundTime);
+
+            Server server = new Server(form, roundTime);
+            RemotingServices.Marshal(server, serverName, typeof(Server));
             System.Console.WriteLine("Enter instruction:");
             String instruction = System.Console.ReadLine().ToLower();
 

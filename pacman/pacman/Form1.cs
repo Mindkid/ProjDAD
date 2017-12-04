@@ -16,9 +16,11 @@ namespace pacman {
 
         public delegate void RefreshConversation(String conversation);
         public delegate void MovePacman(String pacmanName, KeyConfiguration.KEYS key);
+        public delegate String GetBoardStatus();
 
         public RefreshConversation refreshConversation;
         public MovePacman movePacmanDel;
+        public GetBoardStatus boardStatus;
 
         // direction player is moving in. Only one will be true
         bool canReceiveInput = true;
@@ -52,6 +54,7 @@ namespace pacman {
             clientApp = new ClientApp(server, this, "Kidm");
             refreshConversation = new RefreshConversation(refreshMessages);
             movePacmanDel = new MovePacman(movePacman);
+            boardStatus = new GetBoardStatus(getBoardStatus);
         }
 
         
@@ -242,5 +245,19 @@ namespace pacman {
             }
         }
 
+        private String getBoardStatus()
+        {
+            String boardStatus = "---- BOARD STATUS ---- \r\n";
+            boardStatus += "Score: " + score + "\r\n";
+            foreach (Control c in this.Controls)
+            {
+                
+                boardStatus += c.Name + ": " + c.Location;
+                boardStatus += "\r\n";
+            }
+
+            boardStatus += "--------------------\r\n";
+            return boardStatus;
+        }
     }
 }

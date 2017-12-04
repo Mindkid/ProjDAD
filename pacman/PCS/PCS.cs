@@ -3,6 +3,7 @@ using PuppetMaster;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -50,6 +51,17 @@ namespace PCS
             Console.WriteLine("Client Node was launched..");
         }
 
+        public void creatClientNode(String processID, String clientURL)
+        {
+            String arguments = serversURL.Count + " ";
+            foreach (String url in serversURL)
+                arguments += url + " ";
+
+            launchProcess(processID, clientURL, clientPath, arguments);
+
+            Console.WriteLine("Client Node was launched..");
+        }
+
         /*
         * This method launchs a Server Node 
         */
@@ -69,16 +81,36 @@ namespace PCS
          */ 
         private void launchProcess(String processID, String url, String path, String arguments)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo(path);
-            String port = url.Split(':')[1].Split('/')[0];
-            startInfo.Arguments = port + " " + arguments;
+            int firstAttemp = 0;
 
+            ProcessStartInfo startInfo = new ProcessStartInfo(path);
+            
+            startInfo.Arguments = url + " " + arguments;
             processIDs.Add(processID, Process.Start(startInfo).Id);
 
-            //IProcessToPCS process = (IProcessToPCS)Activator.GetObject(typeof(IProcessToPCS), url);
-
-            //processes.Add(processID, process);
+            Thread thread = new Thread(() => fetchIProcessToPCS(processID, url, firstAttemp));
+            thread.Start();
         }
+
+        private void fetchIProcessToPCS(String processID, String url, int attempt)
+        {
+            try
+            {
+                IProcessToPCS process = (IProcessToPCS) Activator.GetObject(typeof(IProcessToPCS), url);
+                processes.Add(processID, process);
+            }
+            catch(Exception)
+            {
+                if (attempt <= KeyConfiguration.MAX_ATTEMPTS)
+                {
+                    Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
+                   fetchIProcessToPCS(processID, url, attempt++);
+                }
+                else
+                    Console.WriteLine("Could connect to: " + processID);
+            }
+        }
+
 
         /*
          * This method kills a process
@@ -122,12 +154,22 @@ namespace PCS
             }
         }
 
+        //TO BE MODIFIED
         public String globalStatus()
         {
             String status = "";
             int token = generateRandomUniqueToken();
             foreach (IProcessToPCS iptpcs in processes.Values)
-                status += iptpcs.takeSnapshot(token);
+            {
+                try
+                {
+                    status += iptpcs.takeSnapshot(token);
+                }
+                catch(Exception)
+                {
+                    status += processes.FirstOrDefault(x => x.Value == iptpcs).Key + "it\'s down!";
+                }
+            }
             return status;
         }
 

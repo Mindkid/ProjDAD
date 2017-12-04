@@ -14,7 +14,10 @@ using System.Windows.Forms;
 namespace PacmanServer {
     public partial class Form1 : Form {
         public delegate void MovePacman(String pacmanName, KeyConfiguration.KEYS key);
+        public delegate String GetBoardStatus();
+
         public MovePacman movePacmanDel;
+        public GetBoardStatus boardStatus;
 
         int boardRight = 320;
         int boardBottom = 320;
@@ -38,6 +41,7 @@ namespace PacmanServer {
             InitializeComponent();
             timer1.Interval = roundTime;
             label2.Visible = false;
+            boardStatus = new GetBoardStatus(getBoardStatus);
         }
 
 
@@ -149,6 +153,20 @@ namespace PacmanServer {
                     break;
                 
             }
+        }
+
+        private String getBoardStatus()
+        {
+            String boardStatus = "---- BOARD STATUS ---- \r\n";
+            foreach (Control c in this.Controls)
+            {
+
+                boardStatus += c.Name + ": " + c.Location;
+                boardStatus += "\r\n";
+            }
+
+            boardStatus += "--------------------\r\n";
+            return boardStatus;
         }
     }
 }

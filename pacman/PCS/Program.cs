@@ -25,7 +25,8 @@ namespace PCS
 
             PCS pcs = new PCS();
             RemotingServices.Marshal(pcs, ConnectionLibrary.PCS_NAME, typeof(PCS));
-           // pcs.creatServerNode("asd", ":12000/", "4", "4");
+            // pcs.creatServerNode("asd", ":12000/", "4", "4");
+            Console.WriteLine("----- PCS running -----");
             Console.ReadLine();
         }
     }

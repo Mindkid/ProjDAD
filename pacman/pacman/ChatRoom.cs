@@ -8,11 +8,6 @@ namespace pacman
 {
      public class ChatRoom : MarshalByRefObject
     {
-        /*
-         * This attribute sets the number of attempts
-         * that the message it's resended
-         */
-        private static int MAX_ATTEMPTS = 3;
 
         /*
          * This attribute saves all the 
@@ -60,16 +55,27 @@ namespace pacman
 
         public void receiveMessage(Message message)
         {
-            conversation.Add(message);
-            conversation.Sort();
-            updateClientConversation();
+            if(!conversation.Contains(message))
+            {
+                conversation.Add(message);
+                conversation.Sort();
+                updateClientConversation();
+
+                Thread thread = new Thread(() => broadCastMessage(message));
+                thread.Start();
+            }
+            
         }
 
         private void broadCastMessage(Message message)
         {
             int firstAttempt = 0;
             foreach (ChatRoom chat in clientsChatRooms)
-                sendMessage(chat, message, firstAttempt);
+            {
+               Thread thread =  new Thread(() => sendMessage(chat, message, firstAttempt));
+                thread.Start();
+            }
+            
         }
 
         private void sendMessage(ChatRoom chat, Message message, int attempt)
@@ -78,10 +84,11 @@ namespace pacman
             {
                 chat.receiveMessage(message);
             }
-            catch (SocketException exc)
+            catch (SocketException)
             {
-                Console.WriteLine(exc.ToString());
-                if (attempt < MAX_ATTEMPTS)
+                Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
+
+                if (attempt <= KeyConfiguration.MAX_ATTEMPTS)
                     sendMessage(chat, message, attempt++);
             }
         }

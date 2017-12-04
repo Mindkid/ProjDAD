@@ -23,17 +23,21 @@ namespace pacman {
             BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
             provider.TypeFilterLevel = TypeFilterLevel.Full;
             IDictionary props = new Hashtable();
-            props["port"] = int.Parse(args[0]);
+
+            String port = args[0].Split(':')[1].Split('/')[0];
+            props["port"] = int.Parse(port);
 
             TcpChannel channel = new TcpChannel(props, null, provider);
             ChannelServices.RegisterChannel(channel, false);
-            IPacmanServer server = getServer();
+            List<IPacmanServer> servers = new List<IPacmanServer>();
+            getServers(servers, args);
+
             Application.Run(new Form1(server, KeyConfiguration.NUMBER_OF_PLAYERS));
         }
 
-        static IPacmanServer getServer()
+        static void getServer(String url)
         {  
-            return (IPacmanServer)Activator.GetObject(typeof(IPacmanServer), ConnectionLibrary.buildServerURL());
+            return (IPacmanServer)Activator.GetObject(typeof(IPacmanServer), url);
         }
     }
 }
