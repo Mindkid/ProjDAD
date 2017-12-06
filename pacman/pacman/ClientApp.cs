@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace pacman
 
         private Dictionary<int, Form1> gameHistory;
 
-        public ClientApp(List<IPacmanServer> servers, Form1 form, String nickName)
+        public ClientApp(List<IPacmanServer> servers, Form1 form, String nickName, List<string> plays)
         {
             chat = new ChatRoom(form, nickName);
             this.servers = servers;
@@ -31,11 +32,20 @@ namespace pacman
             keyHistory = new Stack<KeyConfiguration.KEYS>();
             gameHistory = new Dictionary<int, Form1>();
 
+            if(plays.Count != 0)
+            {
+                foreach (String play in plays)
+                    addKey(KeyConfiguration.transformKey(play));
+            }    
+
             int firstAttemped = 0;
             foreach (IPacmanServer server in servers)
             {
                 Thread thread = new Thread(() => addClientToServer(server, firstAttemped));
             }
+
+            RemotingServices.Marshal(this, nickName, typeof(ClientApp));
+
         }
 
         private void addClientToServer(IPacmanServer server, int attempted)

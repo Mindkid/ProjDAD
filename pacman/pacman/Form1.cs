@@ -46,12 +46,12 @@ namespace pacman {
 
         Dictionary<String, PictureBox> pacmans;
 
-        public Form1(IPacmanServer server, int numberPlayers) {
+        public Form1(List<IPacmanServer> servers, int numberPlayers, List<string> plays, String nickname) {
             pacmans = new Dictionary<string, PictureBox>();
             createPacman(numberPlayers);
             InitializeComponent();
             label2.Visible = false;
-            clientApp = new ClientApp(server, this, "Kidm");
+            clientApp = new ClientApp(servers, this, nickname, plays);
             refreshConversation = new RefreshConversation(refreshMessages);
             movePacmanDel = new MovePacman(movePacman);
             boardStatus = new GetBoardStatus(getBoardStatus);

@@ -17,24 +17,30 @@ namespace pacman {
         /// </summary>
         [STAThread]
         static void Main(String[] args) {
+            int numberOfPlayers = 0;
+            String filename = null;
+            String port = args[0].Split(':')[2].Split('/')[0];
+            String nickname = args[0].Split(':')[2].Split('/')[1];
+            List<string> plays = new List<string>();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             BinaryServerFormatterSinkProvider provider = new BinaryServerFormatterSinkProvider();
             provider.TypeFilterLevel = TypeFilterLevel.Full;
             IDictionary props = new Hashtable();
-
-            String port = args[0].Split(':')[1].Split('/')[0];
             props["port"] = int.Parse(port);
-            String file = args[0].Split(' ').Last();
-            List<string> plays= new List<string>();
-            if (file.Contains(':'))
+
+            if (args.Length == KeyConfiguration.SIZE_ARGS_WITH_FILE)
             {
-                file = null;
+                filename = args[args.Length - 1];
+                numberOfPlayers = int.Parse(args[args.Length - 2]);
             }
-            if(file != null)
+            else
+                numberOfPlayers = int.Parse(args[args.Length - 1]);
+            if (filename != null)
             {
-                using (var reader = new StreamReader(@file))
+                using (var reader = new StreamReader(@filename))
                 {
                     while (!reader.EndOfStream)
                     {
@@ -44,17 +50,38 @@ namespace pacman {
                     }
                 }
             }
+
             TcpChannel channel = new TcpChannel(props, null, provider);
             ChannelServices.RegisterChannel(channel, false);
-            List<IPacmanServer> servers = new List<IPacmanServer>();
-            getServers(servers, args);
 
-            Application.Run(new Form1(server, KeyConfiguration.NUMBER_OF_PLAYERS));
+            List<IPacmanServer> servers = new List<IPacmanServer>();
+
+            int numberURLs = int.Parse(args[1]);
+            getServers(servers, args.SubArray(2, numberURLs));
+
+            Application.Run(new Form1(servers, numberOfPlayers, plays, nickname));
         }
 
-        static void getServer(String url)
+        static void getServers(List<IPacmanServer> servers, String[] urlArray)
         {  
-            return (IPacmanServer)Activator.GetObject(typeof(IPacmanServer), url);
+            foreach(String url in urlArray)
+            {
+                try
+                {
+                    servers.Add((IPacmanServer)Activator.GetObject(typeof(IPacmanServer), url));
+                }
+                catch(Exception)
+                {
+                    //DO NOTHING OR REDEFINE
+                }
+            }
+        }
+
+        public static T[] SubArray<T>(this T[] data, int index, int length)
+        {
+            T[] result = new T[length];
+            Array.Copy(data, index, result, 0, length);
+            return result;
         }
     }
 }

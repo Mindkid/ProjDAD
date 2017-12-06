@@ -39,11 +39,12 @@ namespace PCS
         /*
          * This method launchs a Client Node 
          */ 
-        public void creatClientNode(String processID, String clientURL, String filename)
+        public void creatClientNode(String processID, String clientURL, String numberOfPlayers, String filename)
         {
             String arguments = serversURL.Count + " ";
             foreach (String url in serversURL)
                 arguments += url + " ";
+            arguments += numberOfPlayers + " "; 
             arguments += filename;
 
             launchProcess(processID, clientURL, clientPath, arguments);
@@ -51,12 +52,13 @@ namespace PCS
             Console.WriteLine("Client Node was launched..");
         }
 
-        public void creatClientNode(String processID, String clientURL)
+        public void creatClientNode(String processID, String clientURL, String numberOfPlayers)
         {
             String arguments = serversURL.Count + " ";
             foreach (String url in serversURL)
                 arguments += url + " ";
 
+            arguments += numberOfPlayers;
             launchProcess(processID, clientURL, clientPath, arguments);
 
             Console.WriteLine("Client Node was launched..");
