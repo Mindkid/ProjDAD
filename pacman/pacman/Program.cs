@@ -8,7 +8,7 @@ using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Serialization.Formatters;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
 
 namespace pacman {
     static class Program {
@@ -34,19 +34,13 @@ namespace pacman {
             }
             if(file != null)
             {
-                Excel.Application xlApp = new Excel.Application();
-                Excel.Workbook xlWorkbook = xlApp.Workbooks.Open("@"+file);
-                Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
-                Excel.Range xlRange = xlWorksheet.UsedRange;
-
-                int rowCount = xlRange.Rows.Count;
-                int colCount = xlRange.Columns.Count;
-
-                for (int i = 1; i <= rowCount; i++)
+                using (var reader = new StreamReader(@file))
                 {
-                    for (int j = 1; j <= colCount; j++)
+                    while (!reader.EndOfStream)
                     {
-                        plays.Add(xlRange.Cells[i, j].Value2.ToString().Split(',')[1]);
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+                        plays.Add(values[1]);
                     }
                 }
             }
