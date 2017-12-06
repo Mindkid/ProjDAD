@@ -29,3 +29,5 @@ C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Debug\ne
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Debug\netstandard1.0\ConnectorLibrary.AssemblyInfo.cs
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Debug\netstandard1.0\ConnectorLibrary.dll
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Debug\netstandard1.0\ConnectorLibrary.pdb
+C:\Users\Rui\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Debug\netstandard1.0\ConnectorLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Rui\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Debug\netstandard1.0\ConnectorLibrary.AssemblyInfoInputs.cache

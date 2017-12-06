@@ -122,6 +122,14 @@
       <Project>{6b084570-c2c5-4506-b272-1004531372be}</Project>
       <Name>ConnectorLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PCS\PCS.csproj">
+      <Project>{926d64fe-29a8-4e10-94ab-3893219b286f}</Project>
+      <Name>PCS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PuppetMaster\PuppetMaster.csproj">
+      <Project>{d468f0d4-f856-4f5e-9969-78122046e443}</Project>
+      <Name>PuppetMaster</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
