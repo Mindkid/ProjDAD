@@ -10,6 +10,8 @@ namespace PuppetMaster
 {
     class Program
     {
+        static  int SIZE_ARGS_WITH_FILE = 7;
+
         static void Main(string[] args)
         {
             try
@@ -44,15 +46,18 @@ namespace PuppetMaster
         {
             String[] arguments = line.Split(' ');
 
-            switch(arguments[0].ToLower())
+            switch (arguments[0].ToLower())
             {
                 /*
                  *                  Structure of the command
                  * StartClient PID PCS_URL CLIENT_URL MSEC_PER_ROUND NUM_PLAYERS [filename]
                  *    [0]      [1]   [2]     [3]            [4]         [5]         [6]
-                 */ 
+                 */
                 case "startclient":
-                    getIPCS().creatClientNode(arguments[1], arguments[3], arguments[6]);
+                    if (arguments.Length == SIZE_ARGS_WITH_FILE)
+                        getIPCS().creatClientNode(arguments[1], arguments[3], arguments[6]);
+                    else
+                        getIPCS().creatClientNode(arguments[1], arguments[3]);
                     break;
                 /*
                  * StartServer PID PCS_URL SERVER_URL MSEC_PER_ROUND NUM_PLAYERS 

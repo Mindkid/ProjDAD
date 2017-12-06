@@ -11,7 +11,7 @@ namespace pacman
     public class ClientApp: MarshalByRefObject, IClientApp, IProcessToPCS
     {
         private ChatRoom chat;
-        private IPacmanServer server;
+        private List<IPacmanServer> servers;
         private Form1 form;
         private int numberOfServers;
 
@@ -23,14 +23,35 @@ namespace pacman
 
         private Dictionary<int, Form1> gameHistory;
 
-        public ClientApp(IPacmanServer server, Form1 form, String nickName)
+        public ClientApp(List<IPacmanServer> servers, Form1 form, String nickName)
         {
-            chat = new ChatRoom(server, form, nickName);
-            this.server = server;
+            chat = new ChatRoom(form, nickName);
+            this.servers = servers;
             this.form = form;
             keyHistory = new Stack<KeyConfiguration.KEYS>();
             gameHistory = new Dictionary<int, Form1>();
-            server.addClient(this);
+
+            int firstAttemped = 0;
+            foreach (IPacmanServer server in servers)
+            {
+                Thread thread = new Thread(() => addClientToServer(server, firstAttemped));
+            }
+        }
+
+        private void addClientToServer(IPacmanServer server, int attempted)
+        {
+            try
+            {
+                server.addClient(this);
+            }
+            catch(Exception)
+            {
+                if(attempted <= KeyConfiguration.MAX_ATTEMPTS)
+                {
+                    Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
+                    addClientToServer(server, attempted++);
+                }
+            }
         }
 
         public void addKey(KeyConfiguration.KEYS key)

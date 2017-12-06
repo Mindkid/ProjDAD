@@ -25,7 +25,7 @@ namespace pacman
         private String nickname;
        
 
-        public ChatRoom(IPacmanServer server, Form1 form, String nickname)
+        public ChatRoom(Form1 form, String nickname)
         {
             conversation = new List<Message>();
             clientsChatRooms = new List<ChatRoom>();

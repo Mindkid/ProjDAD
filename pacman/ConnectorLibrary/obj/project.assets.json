@@ -1867,9 +1867,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rui\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Paulo Martins\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -1877,20 +1875,15 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rui\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Paulo Martins\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
       "projectName": "ConnectorLibrary",
-      "projectPath": "C:\\Users\\Rui\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
-      "packagesPath": "C:\\Users\\Rui\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rui\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\obj\\",
+      "projectPath": "C:\\Users\\Paulo Martins\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\ConnectorLibrary.csproj",
+      "packagesPath": "C:\\Users\\Paulo Martins\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Paulo Martins\\source\\repos\\ProjDAD\\pacman\\ConnectorLibrary\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Rui\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\Paulo Martins\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard1.0"
@@ -1903,11 +1896,6 @@
         "netstandard1.0": {
           "projectReferences": {}
         }
-      },
-      "warningProperties": {
-        "warnAsError": [
-          "NU1605"
-        ]
       }
     },
     "frameworks": {
@@ -1915,7 +1903,7 @@
         "dependencies": {
           "NETStandard.Library": {
             "target": "Package",
-            "version": "[1.6.1, )",
+            "version": "1.6.1",
             "autoReferenced": true
           }
         }
