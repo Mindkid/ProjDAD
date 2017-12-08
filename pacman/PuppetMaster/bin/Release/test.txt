@@ -1,5 +1,5 @@
-StartServer S1 tcp://1.2.3.4:11000/PCS tcp://localhost:20001/Server 100 2
-StartServer S2 tcp://1.2.3.4:11000/PCS tcp://localhost:20002/Server 100 2
-StartServer S3 tcp://1.2.3.4:11000/PCS tcp://localhost:20003/Server 100 2
-StartClient C1 tcp://1.2.3.4:11000/PCS tcp://localhost:30001/Client 100 2
-StartClient C2 tcp://1.2.3.4:11000/PCS tcp://localhost:30002/Client 100 2
+StartServer S1 tcp://1.2.3.4:11000/PCS tcp://localhost:20001/Server1 100 2
+StartServer S2 tcp://1.2.3.4:11000/PCS tcp://localhost:20002/Server2 100 2
+StartServer S3 tcp://1.2.3.4:11000/PCS tcp://localhost:20003/Server3 100 2
+StartClient C1 tcp://1.2.3.4:11000/PCS tcp://localhost:30001/Client1 100 2
+StartClient C2 tcp://1.2.3.4:11000/PCS tcp://localhost:30002/Client2 100 2

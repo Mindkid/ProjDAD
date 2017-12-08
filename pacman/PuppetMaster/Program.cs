@@ -115,6 +115,15 @@ namespace PuppetMaster
                     case "wait":
                         System.Threading.Thread.Sleep(int.Parse(arguments[1]));
                         break;
+
+                    case "list":
+                        Console.WriteLine("----- PROCESS NAMES ----");
+                        String processnames = getIPCS().listProcess();
+                        Console.WriteLine(processnames);
+                        Console.WriteLine("-----------------------");
+                        break;
+
+
                     default:
                         Console.WriteLine("Command not found...");
                         Console.WriteLine("Please see section 5 of: https://fenix.tecnico.ulisboa.pt/downloadFile/845043405456678/DAD-Project-1718.pdf");

@@ -25,6 +25,11 @@ C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.p
 C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.Form1.resources
 C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.Properties.Resources.resources
 C:\Users\Rui\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csproj.GenerateResource.Cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csprojResolveAssemblyReference.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.Form1.resources
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.Properties.Resources.resources
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csproj.GenerateResource.Cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\PacmanServer.exe.config
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\PacmanServer.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\PacmanServer.pdb
@@ -33,10 +38,5 @@ C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\pacm
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\ConnectorLibrary.pdb
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\pacman.pdb
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\bin\Release\pacman.exe.config
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csprojResolveAssemblyReference.cache
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.Form1.resources
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.Properties.Resources.resources
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csproj.GenerateResource.Cache
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer\obj\Release\PacmanServer.pdb

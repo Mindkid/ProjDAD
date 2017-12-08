@@ -56,17 +56,16 @@ namespace pacman
 
         public void receiveMessage(Message message)
         {
-            Monitor.Enter(this);
-            if(!conversation.Contains(message))
-            {
-                conversation.Add(message);
-                conversation.Sort();
-                updateClientConversation();
-            
-                Thread thread = new Thread(() => broadCastMessage(message));
-                thread.Start();
-            }
-            Monitor.Exit(this);
+          Monitor.Enter(this);
+          if (!conversation.Contains(message))
+          {
+            conversation.Add(message);
+            conversation.Sort();
+            updateClientConversation();
+
+            broadCastMessage(message);
+           }
+           Monitor.Exit(this);
         }
 
         private void broadCastMessage(Message message)
@@ -74,7 +73,7 @@ namespace pacman
             int firstAttempt = 0;
             foreach (ChatRoom chat in clientsChatRooms)
             {
-               Thread thread =  new Thread(() => sendMessage(chat, message, firstAttempt));
+               Thread thread = new Thread(() => sendMessage(chat, message, firstAttempt));
                 thread.Start();
             }
             
@@ -82,17 +81,8 @@ namespace pacman
 
         private void sendMessage(ChatRoom chat, Message message, int attempt)
         {
-            try
-            {
+           
                 chat.receiveMessage(message);
-            }
-            catch (SocketException)
-            {
-                Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
-
-                if (attempt <= KeyConfiguration.MAX_ATTEMPTS)
-                    sendMessage(chat, message, attempt++);
-            }
         }
 
         private void updateClientConversation()

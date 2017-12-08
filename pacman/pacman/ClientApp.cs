@@ -16,7 +16,8 @@ namespace pacman
         private List<IPacmanServer> servers;
         private Form1 form;
 
-        private int serverKeyRequests;
+        //This are to be used in sendig the messages
+        int serverKeyRequests;
         private KeyConfiguration.KEYS keyToSend;
 
         //This struct it's used to retrieve the values
@@ -92,9 +93,10 @@ namespace pacman
             if (serverKeyRequests == servers.Count)
             {
                 updateKeyToSend();
-                serverKeyRequests = 0;
+                serverKeyRequests = 1;
             }
             serverKeyRequests++;
+            
             Monitor.Exit(this);
 
             return keyToSend;
@@ -113,33 +115,34 @@ namespace pacman
         }
 
 
-        public void receiveKey(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves)
+        public void receiveKey(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, String serverName)
         {
             Monitor.Enter(this);
 
             int counter = 1;
-            PacmanMove pacMoves = new PacmanMove(pacmanMoves);
+            PacmanMove pacMoves = new PacmanMove(pacmanMoves, serverName);
             try
-            {
+            { 
                 movesQuorum.Add(pacMoves, counter);
             }
-            catch(Exception)
+            catch(Exception e)
             {
-                counter = movesQuorum[pacMoves];
-                counter++;
-                movesQuorum[pacMoves] = counter;
+                if(!e.Message.Equals("SERVER"))
+                {
+                    counter = movesQuorum[pacMoves];
+                    counter++;
+                    movesQuorum[pacMoves] = counter;
+                }
             }
             
             if (counter >= (servers.Count / 2) + 1)
             {
                 round++;
-                Thread thread = new Thread(() => actualizeBoard(pacmanMoves, round));
-                thread.Start();
+                actualizeBoard(pacmanMoves, round);
             }
             
             if (movesQuorum.Count == servers.Count)
                 movesQuorum.Clear();
-
             Monitor.Exit(this);
         }
 

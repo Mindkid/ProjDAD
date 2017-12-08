@@ -10,14 +10,21 @@ namespace pacman
     public class PacmanMove
     {
         private Dictionary<String, KeyConfiguration.KEYS> move;
+        private String serverName;
 
-        public PacmanMove(Dictionary<String, KeyConfiguration.KEYS> move)
+        public PacmanMove(Dictionary<String, KeyConfiguration.KEYS> move, String serverName)
         {
+            this.serverName = serverName;
             this.move = move;
         }
         public Dictionary<String, KeyConfiguration.KEYS> getMove()
         {
             return move;
+        }
+
+        public String getServerName()
+        {
+            return serverName;
         }
 
         public class EqualityComparer : IEqualityComparer<PacmanMove>
@@ -27,18 +34,24 @@ namespace pacman
             {
                 bool result = true;
 
-                for (int i = 0; i < x.getMove().Count; i++)
+                if (x.getServerName() != y.getServerName())
                 {
-                    if (x.getMove().ElementAt(i).Key == y.getMove().ElementAt(i).Key)
+                    for (int i = 0; i < x.getMove().Count; i++)
                     {
-                        if (x.getMove().ElementAt(i).Value != y.getMove().ElementAt(i).Value)
+                        if (x.getMove().ElementAt(i).Key == y.getMove().ElementAt(i).Key)
                         {
-                            result = false;
-                            break;
+                            if (x.getMove().ElementAt(i).Value != y.getMove().ElementAt(i).Value)
+                            {
+                                result = false;
+                                break;
 
+                            }
                         }
                     }
                 }
+                else
+                    throw new Exception("SERVER");
+
                 return result;
             }
 

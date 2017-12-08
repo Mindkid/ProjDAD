@@ -19,22 +19,24 @@ namespace PacmanServer
         private System.Timers.Timer requestClientInput;
 
         private int numerOfPlayers;
+        private String serverName;
 
         private int roundID;
         private int roundTime;
-        public Server(Form1 form, int roundTime, int numerOfPlayers)
+        public Server(Form1 form, int roundTime, int numerOfPlayers, String serverName)
         {
             roundID = 0;
             this.form = form;
             this.roundTime = roundTime;
             this.numerOfPlayers = numerOfPlayers;
+            this.serverName = serverName;
             clients = new Dictionary<IClientApp, string>();
             chatRooms = new List<ChatRoom>();
             gameHistory = new Dictionary<int, Form1>();
             requestClientInput = new System.Timers.Timer(roundTime);
             requestClientInput.Elapsed += RequestClientInput_Elapsed;
 
-            Console.WriteLine(" ------ SERVER STARTED -----");
+            Console.WriteLine(" ------ " + serverName +" STARTED -----");
         }
 
         private void RequestClientInput_Elapsed(object sender, ElapsedEventArgs e)
@@ -47,7 +49,7 @@ namespace PacmanServer
             {
                 key = client.sendKey();
                 playerID = clients[client];
-                Console.WriteLine("Recieved: " + key + " From: " + playerID);
+               // Console.WriteLine("Recieved: " + key + " From: " + playerID);
                 pacmanMoves.Add(playerID,key);
 
             }
@@ -82,23 +84,22 @@ namespace PacmanServer
             int firstAttempt = 0;
             foreach (IClientApp client in clients.Keys)
             {
-                Thread sendThread = new Thread(() => sendMoveToClient(pacmanMoves, client, firstAttempt));
-                sendThread.Start();
+                sendMoveToClient(pacmanMoves, client, serverName, firstAttempt);
             }       
         }
 
-        private void sendMoveToClient(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, IClientApp client, int attempt)
+        private void sendMoveToClient(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, IClientApp client, String serverName, int attempt)
         {
             try
             {
-                client.receiveKey(pacmanMoves);
+                client.receiveKey(pacmanMoves, serverName);
             }
             catch(SocketException exc)
             {
                 if(attempt <= KeyConfiguration.MAX_ATTEMPTS)
                 {
                     Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
-                    sendMoveToClient(pacmanMoves, client, attempt++);
+                    sendMoveToClient(pacmanMoves, client, serverName, attempt++);
                 }
                 else
                     Console.WriteLine(exc.Message);
@@ -164,6 +165,11 @@ namespace PacmanServer
             }
         }
 
+        public void ping()
+        {
+            // FAZER NADA 
+        }
+
         public void freezeProcess()
         {
             Monitor.Enter(this);
@@ -197,5 +203,6 @@ namespace PacmanServer
         {
             throw new NotImplementedException();
         }
+
     }
 }

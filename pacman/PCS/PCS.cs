@@ -124,6 +124,9 @@ namespace PCS
             try
             {
                 Process.GetProcessById(processIDs[processID]).Kill();
+                processes.Remove(processID);
+                processIDs.Remove(processID);
+                
                 Console.WriteLine(processID + ": was killed...");
             }
             catch(Exception )
@@ -175,6 +178,16 @@ namespace PCS
                 }
             }
             return status;
+        }
+
+        public String listProcess()
+        {
+            String procNames = "";
+            foreach(String process in processes.Keys)
+            {
+                procNames += process + "\r\n";
+            }
+            return procNames;
         }
 
         public String localState(String processID, String roundID)

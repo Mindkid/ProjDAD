@@ -36,7 +36,7 @@ namespace PacmanServer
 
             Form1 form = new Form1(numberOfPlayers, roundTime);
 
-            Server server = new Server(form, roundTime, numberOfPlayers);
+            Server server = new Server(form, roundTime, numberOfPlayers, serverName);
             RemotingServices.Marshal(server, serverName, typeof(Server));
 
             System.Console.WriteLine("Enter instruction:");
@@ -50,8 +50,14 @@ namespace PacmanServer
                         List<ChatRoom> usernames = server.getChatRooms();
                         System.Console.WriteLine("This are the numeber of clients " + usernames.Count);
                         foreach (ChatRoom c in usernames)
-                            System.Console.WriteLine("This are the name of client: " + c.getNickName());
-
+                            try
+                            {
+                                System.Console.WriteLine("This are the name of client: " + c.getNickName());
+                            }
+                            catch(Exception)
+                            {
+                                System.Console.WriteLine("Cleint DOWN!!");
+                            }
                         break;
                 }
                 System.Console.WriteLine("Enter instruction:");

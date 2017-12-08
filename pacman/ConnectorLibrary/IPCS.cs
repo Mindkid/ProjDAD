@@ -8,6 +8,7 @@ namespace ConnectorLibrary
 {
     public interface IPCS
     {
+        String listProcess();
         void creatClientNode(String processID, String clientURL, String maxPlayers, String filename);
         void creatClientNode(String processID, String clientURL, String maxPlayers);
         void creatServerNode(String processID, String serverURL, String roundTime, String maxPlayers);
@@ -17,5 +18,6 @@ namespace ConnectorLibrary
         String globalStatus();
         String localState(String processID, String roundID);
         void injectDelay(String srcPID, String destPID);
+       
     }
 }
