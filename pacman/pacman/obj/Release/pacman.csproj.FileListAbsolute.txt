@@ -39,6 +39,8 @@ C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\ConnectorL
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PuppetMaster.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.exe.config
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csprojResolveAssemblyReference.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csproj.ResolveComReference.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.Form1.resources
@@ -47,7 +49,5 @@ C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csp
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.pdb
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.pdb
-C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.exe.config
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PuppetMaster.pdb
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PuppetMaster.exe.config

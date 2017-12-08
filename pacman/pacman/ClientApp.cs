@@ -21,21 +21,13 @@ namespace pacman
 
         //This struct it's used to retrieve the values
         // sended by the servers to do the quorum
-        private struct moveInfo
-        {
-            public Dictionary<String, KeyConfiguration.KEYS> pacmanMoves;
-            int roundID;
-            public moveInfo(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int roundID)
-            {
-                this.pacmanMoves = pacmanMoves;
-                this.roundID = roundID;
-            }
-        }
-        private Dictionary<moveInfo, int> movesQuorum;
+   
+        private Dictionary<PacmanMove, int> movesQuorum;
 
         private Dictionary<String, int> setNameQuorum;
 
         private String pacmanName;
+        private int round;
         /*
          * This attribute saves the keys LIFO
          */
@@ -46,7 +38,7 @@ namespace pacman
         public ClientApp(List<IPacmanServer> servers, Form1 form, String nickName, List<string> plays)
         {
             RemotingServices.Marshal(this, nickName, typeof(ClientApp));
-
+            round = 0;
             chat = new ChatRoom(form, nickName);
             this.servers = servers;
             serverKeyRequests = servers.Count;
@@ -55,7 +47,7 @@ namespace pacman
             keyHistory = new Stack<KeyConfiguration.KEYS>();
             gameHistory = new Dictionary<int, Form1>();
 
-            movesQuorum = new Dictionary<moveInfo, int>();
+            movesQuorum = new Dictionary<PacmanMove, int>(new PacmanMove.EqualityComparer());
             setNameQuorum = new Dictionary<String, int>();
 
             if (plays.Count != 0)
@@ -67,17 +59,16 @@ namespace pacman
             int firstAttemped = 0;
             foreach (IPacmanServer server in servers)
             {
-
-                server.addClient(this);
-                //addClientToServer(server, firstAttemped);
+                addClientToServer(server, firstAttemped);
             }
         }
 
         private void addClientToServer(IPacmanServer server, int attempted)
         {
+          
             try
             {
-                
+                server.addClient(this);
             }
             catch(Exception)
             {
@@ -87,6 +78,7 @@ namespace pacman
                     addClientToServer(server, attempted++);
                 }
             }
+            
         }
 
         public void addKey(KeyConfiguration.KEYS key)
@@ -121,26 +113,27 @@ namespace pacman
         }
 
 
-        public void receiveKey(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round)
+        public void receiveKey(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves)
         {
             Monitor.Enter(this);
 
             int counter = 1;
-            moveInfo moveInfo = new moveInfo(pacmanMoves, round);
+            PacmanMove pacMoves = new PacmanMove(pacmanMoves);
             try
             {
-                movesQuorum.Add(moveInfo, counter);
+                movesQuorum.Add(pacMoves, counter);
             }
             catch(Exception)
             {
-                counter = movesQuorum[moveInfo];
+                counter = movesQuorum[pacMoves];
                 counter++;
-                movesQuorum[moveInfo] = counter;
+                movesQuorum[pacMoves] = counter;
             }
             
             if (counter >= (servers.Count / 2) + 1)
             {
-                Thread thread = new Thread(() => actualizeBoard(moveInfo.pacmanMoves, round));
+                round++;
+                Thread thread = new Thread(() => actualizeBoard(pacmanMoves, round));
                 thread.Start();
             }
             
@@ -152,9 +145,12 @@ namespace pacman
 
         private void actualizeBoard(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round)
         {
-            foreach (String s in pacmanMoves.Keys)
-                form.Invoke(form.movePacmanDel, new object[] { s, pacmanMoves[s] });
-            gameHistory.Add(round, form);
+            if (form.Created)
+            {
+                foreach (String s in pacmanMoves.Keys)
+                    form.Invoke(form.movePacmanDel, new object[] { s, pacmanMoves[s] });
+                gameHistory.Add(round, form);
+            }
         }
         public ChatRoom GetChatRoom()
         {

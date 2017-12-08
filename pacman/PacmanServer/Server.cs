@@ -41,18 +41,24 @@ namespace PacmanServer
         {
             Dictionary<String, KeyConfiguration.KEYS> pacmanMoves = new Dictionary<String, KeyConfiguration.KEYS>();
 
+            KeyConfiguration.KEYS key;
+            String playerID;
             foreach (IClientApp client in clients.Keys)
-                pacmanMoves.Add(clients[client], client.sendKey());
+            {
+                key = client.sendKey();
+                playerID = clients[client];
+                Console.WriteLine("Recieved: " + key + " From: " + playerID);
+                pacmanMoves.Add(playerID,key);
 
-            sendMovesToClients(pacmanMoves, roundID);
+            }
+            sendMovesToClients(pacmanMoves);
 
             gameHistory.Add(roundID, form);
-            roundID++;
         }
 
         public void addClient(IClientApp clientApp)
         {
-
+            Monitor.Enter(this);
             chatRooms.Add(clientApp.GetChatRoom());
 
             clients.Add(clientApp, "pacman" + clients.Count);
@@ -61,10 +67,8 @@ namespace PacmanServer
             {
                 Thread thread = new Thread(() => startGame());
                 thread.Start();
-           
-                requestClientInput.Start();
             }
-           
+            Monitor.Exit(this);
         }
 
         private void actualizeBoard(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves)
@@ -73,28 +77,28 @@ namespace PacmanServer
                 form.Invoke(form.movePacmanDel, new object[] { s, pacmanMoves[s] });
         }
 
-        private void sendMovesToClients(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round)
+        private void sendMovesToClients(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves )
         {
             int firstAttempt = 0;
             foreach (IClientApp client in clients.Keys)
             {
-                Thread sendThread = new Thread(() => sendMoveToClient(pacmanMoves, round, client, firstAttempt));
+                Thread sendThread = new Thread(() => sendMoveToClient(pacmanMoves, client, firstAttempt));
                 sendThread.Start();
             }       
         }
 
-        private void sendMoveToClient(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round, IClientApp client, int attempt)
+        private void sendMoveToClient(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, IClientApp client, int attempt)
         {
             try
             {
-                client.receiveKey(pacmanMoves, roundID);
+                client.receiveKey(pacmanMoves);
             }
             catch(SocketException exc)
             {
                 if(attempt <= KeyConfiguration.MAX_ATTEMPTS)
                 {
                     Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
-                    sendMoveToClient(pacmanMoves, round, client, attempt++);
+                    sendMoveToClient(pacmanMoves, client, attempt++);
                 }
                 else
                     Console.WriteLine(exc.Message);
@@ -109,24 +113,18 @@ namespace PacmanServer
         private void startGame()
         {
             int initialAttempt = 0;
-
             foreach (IClientApp c in clients.Keys)
             {
                 Thread boardThread = new Thread(() => startBoard(c, initialAttempt));
                 Thread chatThread = new Thread(() => startChat(c.GetChatRoom(), initialAttempt));
 
-                try
-                {
-                    boardThread.Start();
-                    chatThread.Start();
+                boardThread.Start();
+                chatThread.Start();
 
-                }
-                catch(Exception exc)
-                {
-                    Console.WriteLine(exc.Message);
-                }
+                boardThread.Join();
+                chatThread.Join();
             }
-
+            requestClientInput.Start();
         }
 
         private void startBoard(IClientApp client, int attempt)

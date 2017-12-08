@@ -43,7 +43,9 @@ namespace pacman
          */
         public void setClientChatRooms(List<ChatRoom> chatRooms)
         {
+            Monitor.Enter(this);
             this.clientsChatRooms = chatRooms;
+            Monitor.Exit(this);
         }
 
         public void sendMessage(String stringMessage)

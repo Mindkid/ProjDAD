@@ -8,7 +8,7 @@ namespace ConnectorLibrary
          * This is an attribute that sets the
          * milliseconds for resending a packet
          */
-        public static int INTERVAL_RESEND = 500;
+        public static int INTERVAL_RESEND = 2000;
 
         public static int SERVER_PORT = 8086;
         public static String SERVER_NAME = "Server";
