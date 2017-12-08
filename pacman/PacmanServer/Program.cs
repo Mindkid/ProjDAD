@@ -36,8 +36,9 @@ namespace PacmanServer
 
             Form1 form = new Form1(numberOfPlayers, roundTime);
 
-            Server server = new Server(form, roundTime);
+            Server server = new Server(form, roundTime, numberOfPlayers);
             RemotingServices.Marshal(server, serverName, typeof(Server));
+
             System.Console.WriteLine("Enter instruction:");
             String instruction = System.Console.ReadLine().ToLower();
 

@@ -32,3 +32,22 @@ C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csproj.Genera
 C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csproj.CoreCompileInputs.cache
 C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.exe
 C:\Users\Rui\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\pacman.exe.config
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\pacman.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\pacman.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PuppetMaster.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csprojResolveAssemblyReference.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csproj.ResolveComReference.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.Form1.resources
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.Properties.Resources.resources
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csproj.GenerateResource.Cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Release\pacman.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PCS.exe.config
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PuppetMaster.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Release\PuppetMaster.exe.config

@@ -1,3 +1,5 @@
-startserver jgjg hkhhkh :1230/ hkhj kkhjhkj
-startclient jggjgj hkhkh :12000/ gjg jkhhk jhkhkh
-startclient jggjg hkhkh :12001/ gjg jkhhk jhkhkh
+StartServer S1 tcp://1.2.3.4:11000/PCS tcp://localhost:20001/Server 200 2
+StartServer S2 tcp://1.2.3.4:11000/PCS tcp://localhost:20002/Server 200 2
+StartServer S3 tcp://1.2.3.4:11000/PCS tcp://localhost:20003/Server 200 2
+StartClient C1 tcp://1.2.3.4:11000/PCS tcp://localhost:30001/Client 200 2
+StartClient C2 tcp://1.2.3.4:11000/PCS tcp://localhost:30002/Client 200 2

@@ -19,8 +19,7 @@ COMO TESTAR:
 	5 - Fazer o seguinte comando:
 		cd PuppetMaster\bin\Release
 	6 - Depois executar o commando:
-		PuppetMaster.exe test.txt
-		
+		PuppetMaster.exe test.txt	
 	7 - Esperar que o servidor e os jogos comecem 
 	8 - Desfrutar do jogo
 

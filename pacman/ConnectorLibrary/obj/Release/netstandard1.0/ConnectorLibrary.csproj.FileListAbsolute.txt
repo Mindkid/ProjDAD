@@ -15,3 +15,10 @@ C:\Users\Rui\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandar
 C:\Users\Rui\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandard1.0\ConnectorLibrary.dll
 C:\Users\Rui\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandard1.0\ConnectorLibrary.pdb
 C:\Users\Rui\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandard1.0\ConnectorLibrary.AssemblyInfoInputs.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\bin\Release\netstandard1.0\ConnectorLibrary.deps.json
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\bin\Release\netstandard1.0\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\bin\Release\netstandard1.0\ConnectorLibrary.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandard1.0\ConnectorLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandard1.0\ConnectorLibrary.AssemblyInfo.cs
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandard1.0\ConnectorLibrary.dll
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\ConnectorLibrary\obj\Release\netstandard1.0\ConnectorLibrary.pdb

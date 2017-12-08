@@ -43,3 +43,10 @@ C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.cspro
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.exe
 C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\PCS.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\PuppetMaster.exe
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\PCS.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\PCS.exe.config
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\PuppetMaster.pdb
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\bin\Debug\PuppetMaster.exe.config
+C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\pacman\obj\Debug\pacman.csproj.ResolveComReference.cache

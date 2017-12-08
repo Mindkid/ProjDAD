@@ -11,24 +11,30 @@ namespace PacmanServer
     class Server : MarshalByRefObject, IPacmanServer, IProcessToPCS
     {
         private Dictionary<IClientApp, String> clients;
+
         private List<ChatRoom> chatRooms;
         private Dictionary<int, Form1> gameHistory;
 
         private Form1 form;
         private System.Timers.Timer requestClientInput;
 
-        int roundID;
-        public Server(Form1 form, int roundTime)
+        private int numerOfPlayers;
+
+        private int roundID;
+        private int roundTime;
+        public Server(Form1 form, int roundTime, int numerOfPlayers)
         {
             roundID = 0;
             this.form = form;
+            this.roundTime = roundTime;
+            this.numerOfPlayers = numerOfPlayers;
             clients = new Dictionary<IClientApp, string>();
             chatRooms = new List<ChatRoom>();
             gameHistory = new Dictionary<int, Form1>();
-
             requestClientInput = new System.Timers.Timer(roundTime);
             requestClientInput.Elapsed += RequestClientInput_Elapsed;
-          
+
+            Console.WriteLine(" ------ SERVER STARTED -----");
         }
 
         private void RequestClientInput_Elapsed(object sender, ElapsedEventArgs e)
@@ -44,23 +50,21 @@ namespace PacmanServer
             roundID++;
         }
 
-        public void addClient(IClientApp clientApp, IProcessToPCS clientProcess)
+        public void addClient(IClientApp clientApp)
         {
-            Monitor.Enter(this);
-            
-            addChatRoom(clientApp.GetChatRoom());
 
-            String playerID = "pacman" + clients.Count;
+            chatRooms.Add(clientApp.GetChatRoom());
 
-            clients.Add(clientApp, playerID);
+            clients.Add(clientApp, "pacman" + clients.Count);
 
-            if (clients.Count == KeyConfiguration.NUMBER_OF_PLAYERS)
+            if (clients.Count == numerOfPlayers)
             {
                 Thread thread = new Thread(() => startGame());
                 thread.Start();
+           
                 requestClientInput.Start();
             }
-            Monitor.Exit(this);
+           
         }
 
         private void actualizeBoard(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves)
@@ -76,8 +80,7 @@ namespace PacmanServer
             {
                 Thread sendThread = new Thread(() => sendMoveToClient(pacmanMoves, round, client, firstAttempt));
                 sendThread.Start();
-            }
-                
+            }       
         }
 
         private void sendMoveToClient(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round, IClientApp client, int attempt)
@@ -86,23 +89,21 @@ namespace PacmanServer
             {
                 client.receiveKey(pacmanMoves, roundID);
             }
-            catch(SocketException)
+            catch(SocketException exc)
             {
                 if(attempt <= KeyConfiguration.MAX_ATTEMPTS)
                 {
                     Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
                     sendMoveToClient(pacmanMoves, round, client, attempt++);
                 }
+                else
+                    Console.WriteLine(exc.Message);
             }
+        
         }
         public List<ChatRoom> getChatRooms()
         {
             return chatRooms;
-        }
-
-        private void addChatRoom(ChatRoom chat)
-        {
-            chatRooms.Add(chat);
         }
 
         private void startGame()
@@ -114,9 +115,18 @@ namespace PacmanServer
                 Thread boardThread = new Thread(() => startBoard(c, initialAttempt));
                 Thread chatThread = new Thread(() => startChat(c.GetChatRoom(), initialAttempt));
 
-                boardThread.Start();
-                chatThread.Start();
+                try
+                {
+                    boardThread.Start();
+                    chatThread.Start();
+
+                }
+                catch(Exception exc)
+                {
+                    Console.WriteLine(exc.Message);
+                }
             }
+
         }
 
         private void startBoard(IClientApp client, int attempt)
@@ -125,13 +135,15 @@ namespace PacmanServer
             {
                 client.setPacmanName(clients[client]);
             }
-            catch(SocketException)
-            {     
+            catch(SocketException exc)
+            {
                 if (attempt <= KeyConfiguration.MAX_ATTEMPTS)
                 {
                     Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
                     startBoard(client, attempt++);
                 }
+                else
+                    Console.WriteLine(exc.Message);
             }
         
         }
@@ -142,13 +154,15 @@ namespace PacmanServer
             {
                 chat.setClientChatRooms(chatRooms);
             }   
-            catch (SocketException)
+            catch (SocketException exc)
             {
                 if (attempt <= KeyConfiguration.MAX_ATTEMPTS)
                 {
                     Thread.Sleep(ConnectionLibrary.INTERVAL_RESEND);
                     startChat(chat, attempt++);
                 }
+                else
+                    Console.WriteLine(exc.Message);
             }
         }
 

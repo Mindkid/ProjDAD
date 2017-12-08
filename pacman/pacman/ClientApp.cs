@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Remoting;
 using System.Text;
 using System.Threading;
+using  System.Linq;
 using System.Threading.Tasks;
 
 namespace pacman
@@ -14,7 +15,25 @@ namespace pacman
         private ChatRoom chat;
         private List<IPacmanServer> servers;
         private Form1 form;
-        private int numberOfServers;
+
+        private int serverKeyRequests;
+        private KeyConfiguration.KEYS keyToSend;
+
+        //This struct it's used to retrieve the values
+        // sended by the servers to do the quorum
+        private struct moveInfo
+        {
+            public Dictionary<String, KeyConfiguration.KEYS> pacmanMoves;
+            int roundID;
+            public moveInfo(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int roundID)
+            {
+                this.pacmanMoves = pacmanMoves;
+                this.roundID = roundID;
+            }
+        }
+        private Dictionary<moveInfo, int> movesQuorum;
+
+        private Dictionary<String, int> setNameQuorum;
 
         private String pacmanName;
         /*
@@ -26,13 +45,20 @@ namespace pacman
 
         public ClientApp(List<IPacmanServer> servers, Form1 form, String nickName, List<string> plays)
         {
+            RemotingServices.Marshal(this, nickName, typeof(ClientApp));
+
             chat = new ChatRoom(form, nickName);
             this.servers = servers;
+            serverKeyRequests = servers.Count;
+
             this.form = form;
             keyHistory = new Stack<KeyConfiguration.KEYS>();
             gameHistory = new Dictionary<int, Form1>();
 
-            if(plays.Count != 0)
+            movesQuorum = new Dictionary<moveInfo, int>();
+            setNameQuorum = new Dictionary<String, int>();
+
+            if (plays.Count != 0)
             {
                 foreach (String play in plays)
                     addKey(KeyConfiguration.transformKey(play));
@@ -41,18 +67,17 @@ namespace pacman
             int firstAttemped = 0;
             foreach (IPacmanServer server in servers)
             {
-                Thread thread = new Thread(() => addClientToServer(server, firstAttemped));
+
+                server.addClient(this);
+                //addClientToServer(server, firstAttemped);
             }
-
-            RemotingServices.Marshal(this, nickName, typeof(ClientApp));
-
         }
 
         private void addClientToServer(IPacmanServer server, int attempted)
         {
             try
             {
-                server.addClient(this);
+                
             }
             catch(Exception)
             {
@@ -71,22 +96,58 @@ namespace pacman
 
         public KeyConfiguration.KEYS sendKey()
         {
-            KeyConfiguration.KEYS key;
+            Monitor.Enter(this);
+            if (serverKeyRequests == servers.Count)
+            {
+                updateKeyToSend();
+                serverKeyRequests = 0;
+            }
+            serverKeyRequests++;
+            Monitor.Exit(this);
+
+            return keyToSend;
+        }
+
+        private void updateKeyToSend()
+        {
             try
             {
-                key = keyHistory.Pop();
+                keyToSend = keyHistory.Pop();
             }
             catch(Exception)
             {
-                key = KeyConfiguration.KEYS.NON_PRESSED;
+                keyToSend = KeyConfiguration.KEYS.NON_PRESSED;
             }
-            return key;
         }
+
 
         public void receiveKey(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round)
         {
-            Thread thread = new Thread(() => actualizeBoard(pacmanMoves, round));
-            thread.Start();
+            Monitor.Enter(this);
+
+            int counter = 1;
+            moveInfo moveInfo = new moveInfo(pacmanMoves, round);
+            try
+            {
+                movesQuorum.Add(moveInfo, counter);
+            }
+            catch(Exception)
+            {
+                counter = movesQuorum[moveInfo];
+                counter++;
+                movesQuorum[moveInfo] = counter;
+            }
+            
+            if (counter >= (servers.Count / 2) + 1)
+            {
+                Thread thread = new Thread(() => actualizeBoard(moveInfo.pacmanMoves, round));
+                thread.Start();
+            }
+            
+            if (movesQuorum.Count == servers.Count)
+                movesQuorum.Clear();
+
+            Monitor.Exit(this);
         }
 
         private void actualizeBoard(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round)
@@ -102,7 +163,24 @@ namespace pacman
 
         public void setPacmanName(String pacname)
         {
-            pacmanName = pacname;
+            int counter = 1;             
+            Monitor.Enter(this);
+            try
+            {
+                setNameQuorum.Add(pacname, counter);
+            }
+            catch(Exception)
+            {
+                counter = setNameQuorum[pacname];
+                setNameQuorum[pacname] = counter++;
+            }
+            if(counter >= (servers.Count / 2) +1)
+                pacmanName = pacname;
+
+            if (counter == servers.Count)
+                setNameQuorum.Clear();
+            Monitor.Exit(this);
+            
         }
         public String getPacmanName()
         {

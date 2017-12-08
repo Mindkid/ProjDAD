@@ -49,22 +49,22 @@ namespace pacman
         public void sendMessage(String stringMessage)
         {
             Message message = new Message(stringMessage, nickname, conversation.Count + 1);
-            Thread thread = new Thread(() => broadCastMessage(message));
-            thread.Start();
+            broadCastMessage(message);
         }
 
         public void receiveMessage(Message message)
         {
+            Monitor.Enter(this);
             if(!conversation.Contains(message))
             {
                 conversation.Add(message);
                 conversation.Sort();
                 updateClientConversation();
-
+            
                 Thread thread = new Thread(() => broadCastMessage(message));
                 thread.Start();
             }
-            
+            Monitor.Exit(this);
         }
 
         private void broadCastMessage(Message message)

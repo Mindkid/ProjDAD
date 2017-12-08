@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace pacman
 {
     [Serializable]
-    public class Message : IComparable
+    public class Message : IEquatable<Message>
     {
         private String message;
         private String nickname;
@@ -37,25 +37,22 @@ namespace pacman
             return dateTime;
         }
 
-        public int CompareTo(object obj)
-        {
-            int result;
-            Message message = (Message)obj;
-
-            if (this.getMessageID() > message.getMessageID())
-                result = 1;
-            else
-                result = -1;
-
-            if (this.getMessageID() == message.getMessageID())
-                result = this.GetDateTime().CompareTo(message.GetDateTime());
-
-            return result;
-        }
-
         public String outputMessage()
         {
             return nickname + ": " + message + "\r\n";
+        }
+
+        public bool Equals(Message other)
+        {
+            bool result = false;
+            if (this.getMessageID() >= other.getMessageID())
+                result = true;
+
+            if (this.getMessageID() == other.getMessageID())
+                if (this.GetDateTime().CompareTo(other.GetDateTime()) == 1)
+                    result = true;
+
+            return result;
         }
     }
 }

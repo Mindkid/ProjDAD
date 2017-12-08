@@ -121,9 +121,9 @@ namespace PuppetMaster
                         break;
                 }
             }
-            catch(Exception)
+            catch(Exception e)
             {
-                Console.WriteLine("IPCS has failed!!!");
+                Console.WriteLine(e.Message);
             }
         }
 

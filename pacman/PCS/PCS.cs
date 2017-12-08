@@ -44,6 +44,7 @@ namespace PCS
             String arguments = serversURL.Count + " ";
             foreach (String url in serversURL)
                 arguments += url + " ";
+           
             arguments += numberOfPlayers + " "; 
             arguments += filename;
 
@@ -74,7 +75,7 @@ namespace PCS
             launchProcess(processID, serverURL, serverPath, arguments);
 
             serversURL.Add(serverURL);
-            Console.WriteLine("Server Node was launched..");
+            Console.WriteLine("Server Node was launched with this args");
         }
 
         /*
@@ -90,6 +91,7 @@ namespace PCS
             startInfo.Arguments = url + " " + arguments;
             processIDs.Add(processID, Process.Start(startInfo).Id);
 
+            Console.WriteLine("Process launched with this args: " + startInfo.Arguments);
             Thread thread = new Thread(() => fetchIProcessToPCS(processID, url, firstAttemp));
             thread.Start();
         }

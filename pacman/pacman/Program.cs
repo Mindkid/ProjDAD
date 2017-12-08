@@ -23,6 +23,8 @@ namespace pacman {
             String nickname = args[0].Split(':')[2].Split('/')[1];
             List<string> plays = new List<string>();
 
+            int numberURLs = int.Parse(args[1]);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -31,13 +33,14 @@ namespace pacman {
             IDictionary props = new Hashtable();
             props["port"] = int.Parse(port);
 
-            if (args.Length == KeyConfiguration.SIZE_ARGS_WITH_FILE)
+            if (args.Length == numberURLs + 4)
             {
                 filename = args[args.Length - 1];
                 numberOfPlayers = int.Parse(args[args.Length - 2]);
             }
             else
                 numberOfPlayers = int.Parse(args[args.Length - 1]);
+
             if (filename != null)
             {
                 using (var reader = new StreamReader(@filename))
@@ -56,27 +59,15 @@ namespace pacman {
 
             List<IPacmanServer> servers = new List<IPacmanServer>();
 
-            int numberURLs = int.Parse(args[1]);
-            getServers(servers, args.SubArray(2, numberURLs));
+
+            String[] serverUrls  = args.SubArray(2, numberURLs);
+
+            foreach (String url in serverUrls)
+               servers.Add((IPacmanServer)Activator.GetObject(typeof(IPacmanServer), url));    
+            
 
             Application.Run(new Form1(servers, numberOfPlayers, plays, nickname));
         }
-
-        static void getServers(List<IPacmanServer> servers, String[] urlArray)
-        {  
-            foreach(String url in urlArray)
-            {
-                try
-                {
-                    servers.Add((IPacmanServer)Activator.GetObject(typeof(IPacmanServer), url));
-                }
-                catch(Exception)
-                {
-                    //DO NOTHING OR REDEFINE
-                }
-            }
-        }
-
         public static T[] SubArray<T>(this T[] data, int index, int length)
         {
             T[] result = new T[length];
