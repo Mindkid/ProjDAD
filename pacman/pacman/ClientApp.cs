@@ -76,8 +76,9 @@ namespace pacman
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            Thread thread = new Thread(sendKey);
-            thread.Start();
+       
+                sendKey();
+                previousRound = round;
         }
 
         private void addClientToServer(IPacmanServer server, int attempted)
@@ -113,7 +114,6 @@ namespace pacman
                 thread.Start();
             }
             updateKeyToSend();
-            previousRound = round;
             
         }
 
@@ -155,6 +155,7 @@ namespace pacman
         private void receivedKey(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, String serverName)
         {
             int counter = 1;
+            Monitor.Enter(this);
             PacmanMove pacMoves = new PacmanMove(pacmanMoves, serverName);
             try
             { 
@@ -178,6 +179,7 @@ namespace pacman
             
             if (movesQuorum.Count == servers.Count)
                 movesQuorum.Clear();
+            Monitor.Exit(this);
         }
 
         private void actualizeBoard(Dictionary<String, KeyConfiguration.KEYS> pacmanMoves, int round)
@@ -215,7 +217,12 @@ namespace pacman
             if (serverNameRequests == servers.Count)
             {
                 setNameQuorum.Clear();
-                aTimer.Start();
+                if (form.Enabled)
+                {
+                    aTimer.Start();
+                    round++;
+                }
+                    
             }
                 
                

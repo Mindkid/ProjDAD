@@ -33,7 +33,6 @@ namespace pacman
             public bool Equals(PacmanMove x, PacmanMove y)
             {
                 bool result = true;
-
                 if (x.getServerName() != y.getServerName())
                 {
                     for (int i = 0; i < x.getMove().Count; i++)
@@ -51,6 +50,7 @@ namespace pacman
                 }
                 else
                     throw new Exception("SERVER");
+                
 
                 return result;
             }

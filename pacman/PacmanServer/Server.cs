@@ -192,12 +192,9 @@ namespace PacmanServer
             try
             {
                 moves.Add(player, key);
-                //Console.WriteLine("Reciving  Moves from player " + player);
                 if (moves.Count >= clients.Count)
                 {
-                    Thread sendKeys = new Thread(() => sendMovesToClients(moves));
-                    sendKeys.Start();
-                    Console.WriteLine("ALL PLAYES IN PLACE");
+                    sendMovesToClients(moves);
                     moves.Clear();
                 }
             }
