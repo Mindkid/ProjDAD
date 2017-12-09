@@ -106,16 +106,15 @@ namespace pacman
         private void sendKey()
         {
             int attempt = 0;
-            if(previousRound != round)
+           
+            foreach (IPacmanServer server in servers)
             {
-                foreach (IPacmanServer server in servers)
-                {
-                    Thread thread = new Thread(() =>sendKeyToServer(server, keyToSend, pacmanName, attempt));
-                    thread.Start();
-                }
-                updateKeyToSend();
-                previousRound = round;
+                Thread thread = new Thread(() =>sendKeyToServer(server, keyToSend, pacmanName, attempt));
+                thread.Start();
             }
+            updateKeyToSend();
+            previousRound = round;
+            
         }
 
         private void sendKeyToServer(IPacmanServer server, KeyConfiguration.KEYS key, String clientName, int attempt)
@@ -217,7 +216,6 @@ namespace pacman
             {
                 setNameQuorum.Clear();
                 aTimer.Start();
-                round++;
             }
                 
                
