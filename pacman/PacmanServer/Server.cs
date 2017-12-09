@@ -188,6 +188,7 @@ namespace PacmanServer
 
         public void sendKey(KeyConfiguration.KEYS key, string player)
         {
+            Monitor.Enter(this);
             try
             {
                 moves.Add(player, key);
