@@ -12,7 +12,6 @@ namespace PacmanServer
 {
     class Program
     {
-        private static int ROUND_TIME = 1000;
 
         static void Main(String[] args)
         {
@@ -56,7 +55,7 @@ namespace PacmanServer
                             }
                             catch(Exception)
                             {
-                                System.Console.WriteLine("Cleint DOWN!!");
+                                System.Console.WriteLine("Client DOWN!!");
                             }
                         break;
                 }

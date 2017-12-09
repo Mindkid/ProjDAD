@@ -13,17 +13,15 @@ namespace PuppetMaster
        
         static void Main(string[] args)
         {
+
             try
             {
                 String filename = args[0];
-                String[] lines;
-                lines = System.IO.File.ReadAllLines(filename);
-                treatFile(lines);
+                openFile(filename);
             }
             catch(Exception)
             {
-                Console.WriteLine("error open the file...");
-                //DO_NOTHING OR DEFINE
+                //Console.WriteLine("error open the file...");
             }
             Console.WriteLine("ENTER INSTRUCTION:");
             String line = Console.ReadLine();
@@ -55,9 +53,9 @@ namespace PuppetMaster
                      */
                     case "startclient":
                         if (arguments.Length == KeyConfiguration.SIZE_ARGS_WITH_FILE)
-                            getIPCS().creatClientNode(arguments[1], arguments[3], arguments[5], arguments[6]);
+                            getIPCS().creatClientNode(arguments[1], arguments[3], arguments[5], arguments[6], arguments[4]);
                         else
-                            getIPCS().creatClientNode(arguments[1], arguments[3], arguments[5]);
+                            getIPCS().creatClientNode(arguments[1], arguments[3], arguments[5], arguments[4]);
                         break;
                     /*
                      * StartServer PID PCS_URL SERVER_URL MSEC_PER_ROUND NUM_PLAYERS 
@@ -122,8 +120,9 @@ namespace PuppetMaster
                         Console.WriteLine(processnames);
                         Console.WriteLine("-----------------------");
                         break;
-
-
+                    case "open":
+                        openFile(arguments[1]);
+                        break;
                     default:
                         Console.WriteLine("Command not found...");
                         Console.WriteLine("Please see section 5 of: https://fenix.tecnico.ulisboa.pt/downloadFile/845043405456678/DAD-Project-1718.pdf");
@@ -149,6 +148,20 @@ namespace PuppetMaster
             }
 
             return ipcs;
+        }
+
+        static void openFile(String filename)
+        {
+            String[] lines;
+            try
+            {
+                lines = System.IO.File.ReadAllLines(filename);
+                treatFile(lines);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("error open the file...");
+            }
         }
     }
 }

@@ -16,13 +16,15 @@ namespace PacmanServer
         private Dictionary<int, Form1> gameHistory;
 
         private Form1 form;
-        private System.Timers.Timer requestClientInput;
 
         private int numerOfPlayers;
         private String serverName;
 
         private int roundID;
         private int roundTime;
+
+        private Dictionary<String, KeyConfiguration.KEYS> moves;
+
         public Server(Form1 form, int roundTime, int numerOfPlayers, String serverName)
         {
             roundID = 0;
@@ -33,29 +35,10 @@ namespace PacmanServer
             clients = new Dictionary<IClientApp, string>();
             chatRooms = new List<ChatRoom>();
             gameHistory = new Dictionary<int, Form1>();
-            requestClientInput = new System.Timers.Timer(roundTime);
-            requestClientInput.Elapsed += RequestClientInput_Elapsed;
 
-            Console.WriteLine(" ------ " + serverName +" STARTED -----");
-        }
+            moves = new Dictionary<string, KeyConfiguration.KEYS>();
 
-        private void RequestClientInput_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Dictionary<String, KeyConfiguration.KEYS> pacmanMoves = new Dictionary<String, KeyConfiguration.KEYS>();
-
-            KeyConfiguration.KEYS key;
-            String playerID;
-            foreach (IClientApp client in clients.Keys)
-            {
-                key = client.sendKey();
-                playerID = clients[client];
-               // Console.WriteLine("Recieved: " + key + " From: " + playerID);
-                pacmanMoves.Add(playerID,key);
-
-            }
-            sendMovesToClients(pacmanMoves);
-
-            gameHistory.Add(roundID, form);
+            Console.WriteLine(" ------ " + serverName + " STARTED -----");
         }
 
         public void addClient(IClientApp clientApp)
@@ -125,7 +108,6 @@ namespace PacmanServer
                 boardThread.Join();
                 chatThread.Join();
             }
-            requestClientInput.Start();
         }
 
         private void startBoard(IClientApp client, int attempt)
@@ -204,5 +186,25 @@ namespace PacmanServer
             throw new NotImplementedException();
         }
 
+        public void sendKey(KeyConfiguration.KEYS key, string player)
+        {
+            try
+            {
+                moves.Add(player, key);
+                //Console.WriteLine("Reciving  Moves from player " + player);
+                if (moves.Count >= clients.Count)
+                {
+                    Thread sendKeys = new Thread(() => sendMovesToClients(moves));
+                    sendKeys.Start();
+                    Console.WriteLine("ALL PLAYES IN PLACE");
+                    moves.Clear();
+                }
+            }
+            catch(Exception)
+            {
+                //DO NOTHING
+            }
+            Monitor.Exit(this);
+        }
     }
 }

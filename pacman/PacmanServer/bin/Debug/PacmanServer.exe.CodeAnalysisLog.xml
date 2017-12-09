@@ -6,8 +6,8 @@
    <Modules>
     <Module Name="pacmanserver.exe">
      <Messages>
-      <Message TypeName="MarkWindowsFormsEntryPointsWithStaThread" Category="Microsoft.Usage" CheckId="CA2232" Status="Active" Created="2017-12-08 21:20:04Z" FixCategory="NonBreaking">
-       <Issue Certainty="95" Level="Error" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Program.cs" Line="18">Mark the entry point method 'Program.Main(string[])' in assembly 'PacmanServer.exe' with an STAThreadAttribute.</Issue>
+      <Message TypeName="MarkWindowsFormsEntryPointsWithStaThread" Category="Microsoft.Usage" CheckId="CA2232" Status="Active" Created="2017-12-09 01:48:53Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Program.cs" Line="17">Mark the entry point method 'Program.Main(string[])' in assembly 'PacmanServer.exe' with an STAThreadAttribute.</Issue>
       </Message>
      </Messages>
      <Namespaces>
@@ -17,7 +17,7 @@
          <Members>
           <Member Name="#timer1_Tick(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-12-08 21:20:04Z" FixCategory="DependsOnFix">
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-12-09 01:48:53Z" FixCategory="DependsOnFix">
              <Issue Certainty="75" Level="Warning" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Form1.cs" Line="94">Object 'pacman' can be disposed more than once in method 'Form1.timer1_Tick(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 94</Issue>
             </Message>
            </Messages>
@@ -25,31 +25,34 @@
          </Members>
         </Type>
         <Type Name="Server" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
-         <Messages>
-          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-12-08 21:20:04Z" FixCategory="NonBreaking">
-           <Issue Name="NonBreaking" Certainty="95" Level="CriticalError">Implement IDisposable on 'Server' because it creates members of the following IDisposable types: 'Timer'.</Issue>
-          </Message>
-         </Messages>
          <Members>
           <Member Name="#addClient(pacman.IClientApp)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-12-08 21:20:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="63">'Server.addClient(IClientApp)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
-             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="73">'Server.addClient(IClientApp)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-12-09 01:48:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="46">'Server.addClient(IClientApp)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="56">'Server.addClient(IClientApp)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#freezeProcess()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-12-08 21:20:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="176">'Server.freezeProcess()' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-12-09 01:48:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="157">'Server.freezeProcess()' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#sendKey(ConnectorLibrary.KeyConfiguration+KEYS,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-12-09 01:48:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="191">'Server.sendKey(KeyConfiguration.KEYS, string)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="208">'Server.sendKey(KeyConfiguration.KEYS, string)' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#unFreezeProcess()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-12-08 21:20:04Z" FixCategory="NonBreaking">
-             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="181">'Server.unFreezeProcess()' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
+            <Message TypeName="DoNotLockOnObjectsWithWeakIdentity" Category="Microsoft.Reliability" CheckId="CA2002" Status="Active" Created="2017-12-09 01:48:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="CriticalError" Path="C:\Users\Paulo Martins\source\repos\ProjDAD\pacman\PacmanServer" File="Server.cs" Line="162">'Server.unFreezeProcess()' locks on a reference of type 'Server'. Replace this with a lock against an object with strong-identity.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -92,16 +95,6 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="95">Error</MessageLevel>
    <File Name="usagerules.dll" Version="15.0.0.0" />
-  </Rule>
-  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
-   <Name>Types that own disposable fields should be disposable</Name>
-   <Description>Types that declare disposable members should also implement IDisposable. If the type does not own any unmanaged resources, do not implement a finalizer on it.</Description>
-   <Resolution Name="NonBreaking">Implement IDisposable on {0} because it creates members of the following IDisposable types: {1}.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182172.aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="95">CriticalError</MessageLevel>
-   <File Name="designrules.dll" Version="15.0.0.0" />
   </Rule>
  </Rules>
  <Localized>

@@ -18,6 +18,7 @@ namespace pacman {
         [STAThread]
         static void Main(String[] args) {
             int numberOfPlayers = 0;
+            int roundTime = 0;
             String filename = null;
             String port = args[0].Split(':')[2].Split('/')[0];
             String nickname = args[0].Split(':')[2].Split('/')[1];
@@ -33,13 +34,18 @@ namespace pacman {
             IDictionary props = new Hashtable();
             props["port"] = int.Parse(port);
 
-            if (args.Length == numberURLs + 4)
+            if (args.Length == numberURLs + 5)
             {
                 filename = args[args.Length - 1];
                 numberOfPlayers = int.Parse(args[args.Length - 2]);
+                roundTime = int.Parse(args[args.Length - 3]);
             }
             else
+            {
                 numberOfPlayers = int.Parse(args[args.Length - 1]);
+                roundTime = int.Parse(args[args.Length - 2]);
+            }
+            
 
             if (filename != null)
             {
@@ -66,7 +72,7 @@ namespace pacman {
                servers.Add((IPacmanServer)Activator.GetObject(typeof(IPacmanServer), url));    
             
 
-            Application.Run(new Form1(servers, numberOfPlayers, plays, nickname));
+            Application.Run(new Form1(servers, numberOfPlayers, plays, nickname, roundTime));
         }
         public static T[] SubArray<T>(this T[] data, int index, int length)
         {

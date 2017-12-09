@@ -9,8 +9,8 @@ namespace ConnectorLibrary
     public interface IPCS
     {
         String listProcess();
-        void creatClientNode(String processID, String clientURL, String maxPlayers, String filename);
-        void creatClientNode(String processID, String clientURL, String maxPlayers);
+        void creatClientNode(String processID, String clientURL, String maxPlayers, String filename, String roundTime);
+        void creatClientNode(String processID, String clientURL, String maxPlayers, String roundTime);
         void creatServerNode(String processID, String serverURL, String roundTime, String maxPlayers);
         void killProcess(String processID);
         void freezeProcess(String processID);

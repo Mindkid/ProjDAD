@@ -1,4 +1,5 @@
 ﻿using ConnectorLibrary;
+using System;
 
 namespace pacman
 {
@@ -6,6 +7,6 @@ namespace pacman
     {
         void addClient(IClientApp clientApp);
         void ping();
-        //void sendKey(KeyConfiguration.KEYS key);
+        void sendKey(KeyConfiguration.KEYS key, String player);
     }
 }
